@@ -16,7 +16,10 @@ To build and deploy the Java application run script/stage_java.sh
 
 # ASP.net Hello Web #
 
-Based on code from the ASP.Net 1.0.0-beta4 samples at https://github.com/aspnet/Home/tree/dev/samples/1.0.0-beta4/HelloWeb
+Based on the Hello world using Nancy framework. See https://github.com/NancyFx/Nancy/wiki/Introduction
+Initial project created using Yeoman: npm install -g yo grunt-cli generator-aspnet bower; yo aspnet
+This async tutorial was really useful too: http://blog.jonathanchannon.com/2013/08/24/async-route-handling-with-nancy/
+
 
 # Java Hello REST API #
 

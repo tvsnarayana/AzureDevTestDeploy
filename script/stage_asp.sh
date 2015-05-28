@@ -15,5 +15,6 @@ docker stop stage_asp
 echo "Removing any previously staged container"
 docker rm stage_asp
 echo "Running a container"
-docker run -t -d -p 80:5004 --name=stage_asp asp
+docker run -t -d -p 80:5001 --name=stage_asp asp
 
+docker logs stage_asp

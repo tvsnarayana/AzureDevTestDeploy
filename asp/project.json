@@ -1,29 +1,21 @@
 {
-    "version": "1.0.0-*",
-    "webroot": "wwwroot",
-    "exclude": [
-        "wwwroot"
-    ],
-    "packExclude": [
-        "**.kproj",
-        "**.user",
-        "**.vspscc"
-    ],
     "dependencies": {
-        "Kestrel": "1.0.0-beta4",
-        "Microsoft.AspNet.Diagnostics": "1.0.0-beta4",
-        "Microsoft.AspNet.Hosting": "1.0.0-beta4",
-        "Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
-        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta4",
-        "Microsoft.AspNet.StaticFiles": "1.0.0-beta4"
+        "Kestrel": "1.0.0-*",
+        "Microsoft.AspNet.Owin": "1.0.0-*",
+        "Nancy": "1.2.0"
     },
+    
+    "code": ["*.cs"],
+    
     "commands": {
-        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5001",
-        "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004"
+        "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5001"
     },
+    
     "frameworks": {
-        "dnx451": { },
-        "dnxcore50": { }
+        "dnx451": {
+            "frameworkAssemblies": {
+                "System.Net.Http": "4.0.0.0"
+            }
+        }
     }
 }
-
