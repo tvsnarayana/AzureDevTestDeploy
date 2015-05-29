@@ -2,7 +2,7 @@
 # Build and run the ASP.Net application
 ###########################################
 
-source script/variables.sh
+source script/config.sh
 
 echo "Staging verion $STAGE_VERSION"
 
