@@ -8,8 +8,9 @@
     "code": ["*.cs"],
     
     "commands": {
-        "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5001",
-        "kestrel-dev": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004"
+        "kestrel-dev": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:8888",
+        "kestrel-stage": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:8080",
+        "kestrel-prod": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:80"
     },
     
     "frameworks": {

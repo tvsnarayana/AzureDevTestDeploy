@@ -5,7 +5,6 @@
 source script/config.sh
 
 echo "Staging ASP application version $STAGE_VERSION on $STAGE_MACHINE_NAME"
-
 eval "$(docker-machine env $STAGE_MACHINE_NAME)"
 
 cd asp
@@ -19,4 +18,4 @@ docker stop stage_asp
 echo "Removing any previously staged container"
 docker rm stage_asp
 echo "Running a container"
-docker run -t -d -p 80:5001 --name=stage_asp asp:$STAGE_VERSION
+docker run -t -d -p 8080:8080 --name=stage_asp asp:$STAGE_VERSION

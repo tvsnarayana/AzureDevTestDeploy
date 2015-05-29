@@ -17,6 +17,4 @@ docker stop dev_asp
 echo "Removing any previous dev container"
 docker rm dev_asp
 echo "Running a container"
-docker run -t -d -p 5004:5004 --name=dev_asp asp:latest
-
-docker logs dev_asp
+docker run -t -d -p 8888:8888 --name=dev_asp asp:latest
