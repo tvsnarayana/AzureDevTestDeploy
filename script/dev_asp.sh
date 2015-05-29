@@ -3,8 +3,8 @@
 ###########################################
 
 # FIXME: We should have a dev machine to work on
-eval "$(docker-machine env tutorialStage)"
-docker-machine env tutorialStage
+eval "$(docker-machine env $DEV_MACHINE_NAME)"
+docker-machine env $DEV_MACHINE_NAME
 
 cd asp
 
