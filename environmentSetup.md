@@ -49,7 +49,6 @@ As a minimum you will need a Docker host for development. You'll most likely
 want this to be on your local machine. So run the following command (as an 
 administrator):
 
-
 $ docker-machine create -d hyper-v MACHINE_NAME
 
 If you want to push the application to a staging server for testing before 
@@ -96,3 +95,47 @@ for the ASP.Net application:
     - port 5000 on the production machine
 	  - port 5050 on the staging machine
 	  - port 5555 on the dev machine
+    
+ ## Development Container ##
+ 
+ We will be doing our development in a container on the development host
+we created in the previous setup steps. To connect to this machine first
+make sure that your currently active docker-machine is the correct
+development machine (by default called tutorialDev). The followin 
+command will list the machines available and indicates which is the
+currently active machine:
+
+    $ docker-machine active
+    tutorialProd
+
+If your development machine is not the development machine you can set it
+with:
+
+    $ docker-machine active tutorialDev
+
+Now you can SSH into the machine with:
+
+    $ docker-machine ssh
+    
+Once you are connected to the host machine you need to grab the project
+source with :
+
+    $ git clone https://github.com/rgardler/AzureDevTestDeploy
+
+In the root directory of the project there is a Dockerfile which defines
+a preconfigured development environment. To build and run the development 
+container run:
+
+$ script/dev.sh
+
+You will now be in a shell inside the development container. To 
+exit the machine and return to your host simply run the command 'exit'.
+
+If you run 'ls -l' you will see that you are in a directory that is mapped
+into the source directory on your host machine. You can safely make changes
+in either the host or the dev container and see them reflected in both 
+locations.
+
+The development container will watch for changes in your configuration files and 
+rebuild/restart development versions of your application containers whenever
+necessary. See the readme.md file for more information.

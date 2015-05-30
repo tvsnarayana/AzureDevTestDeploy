@@ -16,49 +16,11 @@ done.
 
 # Development #
 
-We will be doing our development in a container on the development host
-we created in the previous setup steps. To connect to this machine first
-make sure that your currently active docker-machine is the correct
-development machine (by default called tutorialDev). The followin 
-command will list the machines available and indicates which is the
-currently active machine:
+Development is supported by a pre-configured development container.
+See the environemntSetup.md file for more information on how to 
+build and start this container.
 
-    $ docker-machine active
-    tutorialProd
-
-If your development machine is not the development machine you can set it
-with:
-
-    $ docker-machine active tutorialDev
-
-Now you can SSH into the machine with:
-
-    $ docker-machine ssh
-    
-Once you are connected to the host machine you need to grab the project
-source with :
-
-    $ git clone https://github.com/rgardler/AzureDevTestDeploy
-
-In the root directory of the project there is a Dockerfile which defines
-a preconfigured development environment. In this tutorial we will be using 
-Visual Studio Code, a new cross platform editor which has some useful 
-features we will use later in this tutorial. However, we have been
-careful to ensure that the workflow is not broken for those who want to
-use a different editor (the container includes both Vi and Emacs).
-
-To build and run the development container run:
-
-$ script/dev.sh
-
-You will now be in a shell script inside the development container. To 
-exit the machine and return to your host simply run the command 'exit'.
-
----- FIXME ----
-Currently we can't mount a volume in Windows
-
-If you run 'ls -l' you will see that you are in a directory that is mapped
-into the source directory on your host machine.
+--- FIXME: start containers in dev mode when the dev container is started
 
 ## A Note on Debugging ##
 
