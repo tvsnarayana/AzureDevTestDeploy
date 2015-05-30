@@ -16,12 +16,36 @@ done.
 
 # Development #
 
-Clone the source from https://github.com/rgardler/AzureDevTestDeploy.
+We will be doing our development in a container on the development host
+we created in the previous setup steps. To connect to this machine first
+make sure that your currently active docker-machine is the correct
+development machine (by default called tutorialDev). The followin 
+command will list the machines available and indicates which is the
+currently active machine:
+
+    $ docker-machine active
+    tutorialProd
+
+If your development machine is not the development machine you can set it
+with:
+
+    $ docker-machine active tutorialDev
+
+Now you can SSH into the machine with:
+
+    $ docker-machine ssh
+    
+Once you are connected to the host machine you need to grab the project
+source with :
+
+    $ git clone https://github.com/rgardler/AzureDevTestDeploy
 
 In the root directory of the project there is a Dockerfile which defines
-a preconfigured development environment. This will use the source on your
-host machine and thus you can use whichever development tools you want to
-edit those files.
+a preconfigured development environment. In this tutorial we will be using 
+Visual Studio Code, a new cross platform editor which has some useful 
+features we will use later in this tutorial. However, we have been
+careful to ensure that the workflow is not broken for those who want to
+use a different editor (the container includes both Vi and Emacs).
 
 To build and run the development container run:
 
@@ -49,9 +73,12 @@ inspect the machine directly.
 
 # Staging #
 
-To build and stage the ASP.Net application run script/stage_asp.sh. The variable
+To build and stage the ASP.Net application run script/stage_asp.sh.
 
 To build and stage the Java application run script/stage_java.sh
+
+For convenience you can build and stage all components at the same time
+using 'script/stage.sh'
 
 Once both applications are staged you can visit:
   * Java REST API: http://tutorialstage.cloudapp.net:5050/JerseyHelloWorld/rest/helloworld 

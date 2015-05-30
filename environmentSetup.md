@@ -45,30 +45,37 @@ $ docker-machine create -d azure --azure-subscription-id="SUB_ID" --azure-subscr
 
 ## Create Docker Hosts ##
 
-As a minimum you will need a Docker host for development. If you want to
-push the application to a staging server for testing before production you
-will need a host to act as your staging server. This could be the same host
-as your development machine since this is not a real application. You may
-also want to create a Docker host to act as your "production" server. Again,
-since this is just an example project you could use the same machine as your
-development machine.
+As a minimum you will need a Docker host for development. You'll most likely
+want this to be on your local machine. So run the following command (as an 
+administrator):
 
-The names of the Docker hosts are set in the script/config.sh file. By default
-these are tutorialDev, tutorialStage and tutorialProd. If you want to use just
-one or two Docker hosts, or you want to use different names for your machines
-edit the values in script/config.sh. The default values are:
 
-    - Dev machine: tutorialDev
-    - Staging machine: tutorialStage
-    - Production machine: tutorialProd
+$ docker-machine create -d hyper-v MACHINE_NAME
 
-Run the following command for each machine you want to create. Be sure to
-change AZURE_SUBSCRIPTION_ID to your subscription ID retrieved from the portal
-and the MACHINE_NAME with the name you set in script/config.sh.
+If you want to push the application to a staging server for testing before 
+production you will need a host to act as your staging server. This could be 
+the same host as your development machine since this is not a real application. 
+Although in production you would likely want it to be a separate host. This
+could be a local or an on-premise machine, alternatively it could be cloud
+based machine. We'll put ours in Microsoft Azure:
 
 $ docker-machine create -d azure --azure-location="Central US" --azure-subscription-id="AZURE_SUBSCRIPTION_ID" --azure-subscription-cert="mycert.pem" MACHINE_NAME
 
-Repeat this command for each of the machines you want to use.
+In the above command be sure to
+change AZURE_SUBSCRIPTION_ID to your subscription ID retrieved from the portal
+and the MACHINE_NAME with the name you set in script/config.sh.
+
+You may also want to create a Docker host to act as your "production" server. 
+Again, since this is just an example project you could use the same machine as your
+development machine. Though we will use a separate Azure machine:
+
+$ docker-machine create -d azure --azure-location="Central US" --azure-subscription-id="AZURE_SUBSCRIPTION_ID" --azure-subscription-cert="mycert.pem" MACHINE_NAME
+
+The names of the Docker hosts used by the scripts are set in the script/config.sh 
+file. These should match the machine names used above. By default
+these are tutorialDev, tutorialStage and tutorialProd. If you want to use just
+one or two Docker hosts, or you want to use different names for your machines
+edit the values in script/config.sh. The default values are:
 
 ## Open Ports on Docker Machines ##
 
