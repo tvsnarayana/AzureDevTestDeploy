@@ -1,3 +1,5 @@
+#define Staging
+
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -18,9 +20,17 @@ namespace asp
         private async Task<String> GetRestData(CancellationToken ct)
         {
             var httpClient = new HttpClient();
-            var uri = "http://tutorialstage.cloudapp.net:8080/JerseyHelloWorld/rest/helloworld";
+            var result = "<h1>ASP application<h1>";
+            var uri = "http://tutorialstage.cloudapp.net/JerseyHelloWorld/rest/helloworld";
+
+            #if Staging
+              result = result + "<h2>Staged version</h2>";
+              uri = "http://tutorialstage.cloudapp.net:5050/JerseyHelloWorld/rest/helloworld";
+            #endif
+
             httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("MyClient", "1.0"));
-            var result = await httpClient.GetStringAsync(uri);
+            result = result + "<p><a href='http://tutorialstage.cloudapp.net:5050/JerseyHelloWorld/rest/helloworld'>Java API</a> says: ";
+            result = result + await httpClient.GetStringAsync(uri) + "<p>";
             return result;
         }
     }
