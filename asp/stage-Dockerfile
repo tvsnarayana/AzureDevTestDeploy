@@ -8,4 +8,4 @@ RUN ["dnu", "restore"]
 COPY . /app
 
 EXPOSE 8080
-ENTRYPOINT ["dnx", ".", "kestrel"]
+ENTRYPOINT ["dnx", ".", "kestrel-stage"]
