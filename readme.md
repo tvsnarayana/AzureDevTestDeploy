@@ -18,9 +18,28 @@ done.
 
 Development is supported by a pre-configured development container.
 See the environemntSetup.md file for more information on how to 
-build and start this container.
+configure your development docker machine. 
+
+In the root directory of the project there is a Dockerfile which defines
+a preconfigured development environment. To build and run the development 
+container run:
+
+$ script/dev.sh
+
+You will now be in a shell inside the development container. To 
+exit the machine and return to your host simply run the command 'exit'.
+
+If you run 'ls -l' you will see that you are in a directory that is mapped
+into the source directory on your host machine. You can safely make changes
+in either the host or the dev container and see them reflected in both 
+locations.
 
 --- FIXME: start containers in dev mode when the dev container is started
+
+The development container will watch for changes in your configuration files and 
+rebuild/restart development versions of your application containers whenever
+necessary. See the readme.md file for more information.
+
 
 ## A Note on Debugging ##
 

@@ -15,4 +15,4 @@ docker stop dev
 echo "Removing any previous dev container"
 docker rm dev
 echo "Running a container"
-docker run --privileged --rm -ti -v `pwd`:/project --name=dev dev:latest bash
+docker run --privileged --rm -it -v //home/docker/project:/project --name=dev dev:latest bash

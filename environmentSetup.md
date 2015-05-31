@@ -96,20 +96,23 @@ for the ASP.Net application:
 	  - port 5050 on the staging machine
 	  - port 5555 on the dev machine
     
- ## Development Container ##
+## Setting up the Development Container ##
  
- We will be doing our development in a container on the development host
-we created in the previous setup steps. To connect to this machine first
-make sure that your currently active docker-machine is the correct
-development machine (by default called tutorialDev). The followin 
-command will list the machines available and indicates which is the
-currently active machine:
+Our development host will be where we run our development container. This
+container will perform a number of useful functions for us during the
+development process. However, we first need to do some setup work via SSH.
+In the future this configurtion step will go away as the Docker community
+are working on a better solution for sharing content from the client to 
+host.
+
+To connect to this machine first make sure that your currently active 
+docker-machine is the correct machine (by default called tutorialDev). The 
+following command will tell you which is the currently active docker
+machine:
 
     $ docker-machine active
-    tutorialProd
 
-If your development machine is not the development machine you can set it
-with:
+If you need to change the currently active machine you can do so with:
 
     $ docker-machine active tutorialDev
 
@@ -117,25 +120,16 @@ Now you can SSH into the machine with:
 
     $ docker-machine ssh
     
-Once you are connected to the host machine you need to grab the project
-source with :
+Now we want to share our source from the client machine with our development
+host machine. On your Windows client machine share the project directory with
+yourself and then run the following commands on the docker machine:
 
-    $ git clone https://github.com/rgardler/AzureDevTestDeploy
+    $ wget http://distro.ibiblio.org/tinycorelinux/5.x/x86/tcz/cifs-utils.tcz
+    $ tce-load -i cifs-utils.tcz
+    $ mkdir project
+    $ sudo mount -t cifs //<your machine's ip>/Users/<your user name>/<path to project files> /home/docker/project -o user=<your user name>
+    
+If all went well you will now be able to view your project files in the 
+/home/docker/project folder.
 
-In the root directory of the project there is a Dockerfile which defines
-a preconfigured development environment. To build and run the development 
-container run:
-
-$ script/dev.sh
-
-You will now be in a shell inside the development container. To 
-exit the machine and return to your host simply run the command 'exit'.
-
-If you run 'ls -l' you will see that you are in a directory that is mapped
-into the source directory on your host machine. You can safely make changes
-in either the host or the dev container and see them reflected in both 
-locations.
-
-The development container will watch for changes in your configuration files and 
-rebuild/restart development versions of your application containers whenever
-necessary. See the readme.md file for more information.
+You are now ready to get to work. See the readme.md for some next steps.
