@@ -5,10 +5,12 @@
 
 source script/config.sh
 
-read -s -p "What is the password for the user account '$USER_NAME'" USER_PASSWORD
+read -s -p "What is the password for the user account '$USER_NAME'?" USER_PASSWORD
+
+echo
+echo "Configuring $DEV_MACHINE_NAME"
 
 docker-machine ssh $DEV_MACHINE_NAME wget http://distro.ibiblio.org/tinycorelinux/5.x/x86/tcz/cifs-utils.tcz
 docker-machine ssh $DEV_MACHINE_NAME -- tce-load -i cifs-utils.tcz
 docker-machine ssh $DEV_MACHINE_NAME mkdir project
-docker-machine ssh $DEV_MACHINE_NAME -- sudo mount -t cifs //$CLIENT_IP/$CLIENT_PATH_TO_PROJECT /home/docker/project -o user=$USER_NAME,password=$USER_PASSWORD
-    
+docker-machine ssh $DEV_MACHINE_NAME -- "sudo mount -t cifs //$CLIENT_IP/$CLIENT_PATH_TO_PROJECT /home/docker/project -o user=$USER_NAME,password=$USER_PASSWORD"
