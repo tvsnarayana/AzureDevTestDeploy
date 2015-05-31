@@ -12,6 +12,17 @@ Windows users should install Git for Windows from http://msysgit.github.io/.
 This will provide both Git and a Bash shell. We will use the Bash shell as a
 convenience since the scripts we have built are Bash scripts.
 
+## Configure.sh ##
+
+The helper scripts provided are configured in scripts/config.sh. You will
+need to screate this file. We provide a template file to get you started
+with good defaults where we can. Start by copying the template:
+
+    $ cp script/config.tmpl config.sh
+    
+Now edit this file, being sure to change any entries of the form
+'< DESCRIPTIVE TEST >'.
+
 ## Install Docker and Docker Machine ##
 
 We will use Docker Machine to create our Docker Hosts. 
@@ -122,14 +133,12 @@ Now you can SSH into the machine with:
     
 Now we want to share our source from the client machine with our development
 host machine. On your Windows client machine share the project directory with
-yourself and then run the following commands on the docker machine:
+yourself and then run the following script on your client machine:
 
-    $ wget http://distro.ibiblio.org/tinycorelinux/5.x/x86/tcz/cifs-utils.tcz
-    $ tce-load -i cifs-utils.tcz
-    $ mkdir project
-    $ sudo mount -t cifs //<your machine's ip>/Users/<your user name>/<path to project files> /home/docker/project -o user=<your user name>
+    $ script/configureDevHyper-v.sh
     
-If all went well you will now be able to view your project files in the 
-/home/docker/project folder.
+This script will ask you for your password for your Windows user. If all went 
+well you will now be able to view your project files on the host machine in 
+the /home/docker/project folder.
 
 You are now ready to get to work. See the readme.md for some next steps.

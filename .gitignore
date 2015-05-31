@@ -1,5 +1,6 @@
 mycert.*
 java/target/*
+script/config.sh
 
 # Emacs files
 auto-save-list
