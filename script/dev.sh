@@ -15,4 +15,6 @@ docker stop dev
 echo "Removing any previous dev container"
 docker rm dev
 echo "Running a dev container on $DEV_MACHINE_NAME"
-docker run --privileged --rm -ti -e LOG=file -v //home/docker/project:/project --name=dev dev:latest
+docker run --privileged -td -e LOG=file -v //home/docker/project:/project --name=dev dev:latest
+docker exec dev bash -ci script/dev_asp.sh
+docker exec dev bash -ci script/dev_java.sh

@@ -26,21 +26,29 @@ container run:
 
 $ script/dev.sh
 
-You will now be in a shell inside the development container. To 
-exit the machine and return to your host simply run the command 'exit'.
+This command will build and start a devleopment container on your 
+designated dev machine (see DEV_MAHCINE_NAME in config.sh). Once the 
+container is started two containers inside this dev one will be started,
+one for each of the apps (Java and ASP.Net).
 
-This container is configured to allow you to run Docker inside of it.
-You can therefore run the application containers inside this container
-on your local machine. This is useful because the development container
-can watch for changes in your source files, rebuild the container and
-run simple tests automatically.
+You can execute commands on the remote machine using the 'docker exec'
+command. For example, to check your two dev containers are running try:
 
-If you run 'ls -l' you will see that you are in a directory that is mapped
-into the source directory on your host machine. You can safely make changes
-in either the host or the dev container and see them reflected in both 
-locations.
+    $ docker exec dev docker ps
 
---- FIXME: start containers in dev mode when the dev container is started
+Note that this script will remove a previously running dev container.
+This means that each time your run this script the ASP.Net and Java
+dev containers need to be rebuilt from scratch. This can be slow. For
+this reason you probably only want to run this script when you want to
+ensure you are working in a clean environment.
+
+If you just want to restart the Java or ASP.Net containers run the
+following commands:
+
+    $ docker exec dev bash -ci script/dev_asp.sh
+    $ docker exec dev bash -ci script/dev_java.sh
+
+--- FIXME: make the watcher file work (see below para)
 
 The development container will watch for changes in your configuration files and 
 rebuild/restart development versions of your application containers whenever
