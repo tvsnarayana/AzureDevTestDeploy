@@ -14,5 +14,5 @@ echo "Stopping any running dev container"
 docker stop dev
 echo "Removing any previous dev container"
 docker rm dev
-echo "Running a container"
-docker run --privileged --rm -it -v //home/docker/project:/project --name=dev dev:latest bash
+echo "Running a dev container on $DEV_MACHINE_NAME"
+docker run --privileged --rm -ti -e LOG=FILE -v //home/docker/project:/project --name=dev dev:latest

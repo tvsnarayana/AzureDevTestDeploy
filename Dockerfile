@@ -1,6 +1,20 @@
-FROM ubuntu
+FROM ubuntu:14.04
 
-RUN apt-get update
-RUN apt-get install -qy curl
+RUN apt-get update -qq && apt-get install -qqy \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    lxc \
+    iptables
+    
+# Install Docker from Docker Inc. repositories.
+RUN curl -sSL https://get.docker.com/ubuntu/ | sh
 
-WORKDIR project
+# Install the magic wrapper.
+# See https://github.com/jpetazzo/dind
+ADD ./wrapdocker /usr/local/bin/wrapdocker
+RUN chmod +x /usr/local/bin/wrapdocker
+
+# Define additional metadata for our image.
+VOLUME /var/lib/docker
+CMD ["wrapdocker"]
