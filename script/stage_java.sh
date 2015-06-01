@@ -15,7 +15,7 @@ eval "$(docker-machine env $STAGE_MACHINE_NAME)"
 cd java
 
 # Build the container to ensure we pick up any changes
-docker build -t javaApp:$JAVA_STAGE_VERSION .
+docker build -t javaapp:$JAVA_STAGE_VERSION .
 
 # Stop, remove and restart the container
 echo "Stopping any running staged container"
@@ -23,6 +23,6 @@ docker stop stage_java
 echo "Removing any previously staged container"
 docker rm stage_java
 echo "Running a container"
-docker run -t -d -p 5050:8080 --name=stage_java javaApp:$JAVA_STAGE_VERSION
+docker run -t -d -p 5050:8080 --name=stage_java javaapp:$JAVA_STAGE_VERSION
 
 cd ..
