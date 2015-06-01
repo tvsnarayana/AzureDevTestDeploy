@@ -29,6 +29,12 @@ $ script/dev.sh
 You will now be in a shell inside the development container. To 
 exit the machine and return to your host simply run the command 'exit'.
 
+This container is configured to allow you to run Docker inside of it.
+You can therefore run the application containers inside this container
+on your local machine. This is useful because the development container
+can watch for changes in your source files, rebuild the container and
+run simple tests automatically.
+
 If you run 'ls -l' you will see that you are in a directory that is mapped
 into the source directory on your host machine. You can safely make changes
 in either the host or the dev container and see them reflected in both 
