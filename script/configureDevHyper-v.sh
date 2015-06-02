@@ -13,4 +13,5 @@ echo "Configuring $DEV_MACHINE_NAME"
 docker-machine ssh $DEV_MACHINE_NAME wget http://distro.ibiblio.org/tinycorelinux/5.x/x86/tcz/cifs-utils.tcz
 docker-machine ssh $DEV_MACHINE_NAME -- tce-load -i cifs-utils.tcz
 docker-machine ssh $DEV_MACHINE_NAME mkdir project
+echo "Mounting //$CLIENT_IP/$CLIENT_PATH_TO_PROJECT as /home/dcker/project"
 docker-machine ssh $DEV_MACHINE_NAME -- "sudo mount -t cifs //$CLIENT_IP/$CLIENT_PATH_TO_PROJECT /home/docker/project -o user=$USER_NAME,password=$USER_PASSWORD"
