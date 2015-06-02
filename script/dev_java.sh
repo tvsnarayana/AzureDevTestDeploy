@@ -15,7 +15,7 @@ eval "$(docker-machine env $DEV_MACHINE_NAME)"
 cd java
 
 # Build the container to ensure we pick up any changes
-docker build -t javaapp:latest
+docker build -t javaapp:latest .
 
 # Stop, remove and restart the container
 echo "Stopping any running dev container"
