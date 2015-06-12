@@ -27,7 +27,7 @@ container run:
 $ script/dev.sh
 
 This command will build and start a devleopment container on your 
-designated dev machine (see DEV_MAHCINE_NAME in config.sh). Once the 
+designated dev machine (see DEV_MACHINE_NAME in config.sh). Once the 
 container is started two containers inside this dev one will be started,
 one for each of the apps (Java and ASP.Net).
 
@@ -36,7 +36,21 @@ command. For example, to check your two dev containers are running try:
 
     $ docker exec dev docker ps
 
-Note that this script will remove a previously running dev container.
+## Viewing the results of the Dev applications ##
+
+--- FIXME: need to ensure we can connect to the two apps from outside the container
+
+## Testing ##
+
+--- FIXME: add example unit tests to both dev containers
+
+## Restarting Development Containers ##
+
+--- FIXME: make the watcher file work (see below para)
+
+FIXME: The development container will watch for changes in your configuration files and rebuild/restart development versions of your application containers whenever necessary. See the readme.md file for more information.
+
+Note that script/dev.sh will remove any previously running dev container.
 This means that each time your run this script the ASP.Net and Java
 dev containers need to be rebuilt from scratch. This can be slow. For
 this reason you probably only want to run this script when you want to
@@ -47,13 +61,6 @@ following commands:
 
     $ docker exec dev bash -ci script/dev_asp.sh
     $ docker exec dev bash -ci script/dev_java.sh
-
---- FIXME: make the watcher file work (see below para)
-
-The development container will watch for changes in your configuration files and 
-rebuild/restart development versions of your application containers whenever
-necessary. See the readme.md file for more information.
-
 
 ## A Note on Debugging ##
 
