@@ -1,3 +1,5 @@
+# Getting Started with Docker and Hyper-V #
+
 # Overview #
 
 We will setup a Docker Host on your Windows machine and deploy two
@@ -23,16 +25,12 @@ applications to a staging server on Microsoft Azure where you will be
 able to run tests against the latest versions. Finally, we will deploy
 the tested containers to a produciton server.
 
-While we will be focussing on Microsoft Azure, the instructions here
-are almost the same for any cloud provider supported by Docker
-Machine.
-
 # What You Will Learn #
 
     * How to install Docker and Docker Machine on Windows
     * How to use Docker Machine to create a Docker Host on Hyper-v
-	* How to use Docker to build and start a development environment
-	* How to build an deploy a two tier application using ASP.NET and Java
+	* How to build an deploy a containerized two tier application
+      using ASP.NET and Java using Docker
 
 # Tools You will Use #
 
@@ -100,7 +98,7 @@ See
 http://www.techrepublic.com/blog/windows-and-office/create-a-virtual-switch-in-windows-8-client-hyper-v/
 for guidance.
 
-## Create a Docker Host ##
+## Create a Docker Host using Hyper-V ##
 
 Docker Machine is used to create Docker Hosts. A Docker Host is a
 virtual machines on which you can create and manage Docker
@@ -221,10 +219,14 @@ same. Run the following commands in your Windows Bash shell:
     cd ..
     cd asp
 	docker build -t asp:latest .
-	docker run -td -p 8888:8888 --name=dev_asp asp:latest
+	docker run -td -p 8888:8888 --link dev_rest:rest --name=dev_asp asp:latest
 
 As before the first time you run the build command it will take a few
 minutes. Subsequent runs will be much faster.
+
+Note that the "--link dev_rest:rest" links the two containers
+together. This allows the application code to know where the rest api
+container is located.
 
 Once the container is running you can visit the web frontend at:
 
