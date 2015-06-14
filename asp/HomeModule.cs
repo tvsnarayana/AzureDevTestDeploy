@@ -1,5 +1,3 @@
-#define Staging
-
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -21,16 +19,11 @@ namespace asp
         {
             var httpClient = new HttpClient();
             var result = "<h1>ASP application<h1>";
-            var uri = "http://127.0.0.1:8080/JerseyHelloWorld/rest/helloworld";
-
-            #if Staging
-              result = result + "<h2>Staged version</h2>";
-              uri = "http://tutorialstage.cloudapp.net:5050/JerseyHelloWorld/rest/helloworld";
-            #endif
+            var uri = "http://rest:8080/JerseyHelloWorld/rest/helloworld";
 
             httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("MyClient", "1.0"));
-            result = result + "<p><a href='http://tutorialstage.cloudapp.net:5050/JerseyHelloWorld/rest/helloworld'>Java API</a> says: ";
-            result = result + await httpClient.GetStringAsync(uri) + "<p>";
+            result = result + "<p>Java API says: ";
+            result = result + await httpClient.GetStringAsync(uri) + "</p>";
             return result;
         }
     }
