@@ -8,6 +8,12 @@ isn't intended to do so. Neither is it a demonstration of best
 practice application management. It is merely an introduction to using
 containerized applications on Microsoft Azure.
 
+# Getting Started #
+
+See the docs folder for some getting started guides. These go into
+more detail than this document. If you are new to Docker then you
+probably want to start there.
+
 # Setup #
 
 There are a few tihngs you need to do to setup your environment. Take

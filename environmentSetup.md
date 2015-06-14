@@ -51,8 +51,8 @@ $ openssl x509 -inform pem -in mycert.pem -outform der -out mycert.cer
 Now you need to go to the Azure portal (https://portal.azure.com). In the "Settings" 
 section select "Management Certificates" and upload mycert.cer.
 
-Grab your subscription ID from the portal, then run docker-machine create with these details:
-$ docker-machine create -d azure --azure-subscription-id="SUB_ID" --azure-subscription-cert="mycert.pem" A-VERY-UNIQUE-NAME
+Grab your subscription ID from the portal, you will need this in the
+next step.
 
 ## Create Docker Hosts ##
 
