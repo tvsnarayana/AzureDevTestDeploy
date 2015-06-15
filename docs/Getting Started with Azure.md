@@ -33,14 +33,14 @@ developers environemnt can mirror the staging environment used for
 interation and user acceptance testing. Finally, we will deploy the
 tested containers to a produciton server.
 
-# What You Will Learn #
+## What You Will Learn ##
 
     * How to create an Microsoft Azure subscription (free trial avialable)
     * How to use Docker Machine to create a Docker Host on Microsoft Azure
 	* How to build an cloud deploy a containerized two tier application
       using ASP.NET and Java using Docker
 
-# Tools You will Use #
+## Tools You will Use ##
 
 	* Microsoft Azure IaaS
 	* Docker
@@ -48,13 +48,13 @@ tested containers to a produciton server.
 	* Git for Windows
 	* Bash
 
-# The Steps #
+## The Steps ##
 
-## Pre-requisites ##
+### Pre-requisites ###
 
 Complete the Getting Started with Docker and Hyper-V
 
-## Create a Microsoft Azure Subscription ##
+### Create a Microsoft Azure Subscription ###
 
 If you already have an Azure subscription you can skip forward to the
 next step.
@@ -62,7 +62,7 @@ next step.
 If you do not yet have a subscription then you can create a free trial
 by visiting http://aka.ms/docker_guide.
 
-## Create Certificates and Register them with Azure ##
+### Create Certificates and Register them with Azure ###
 
 Once you have an active azure subscription run the following commands
 in a Bash shell:
@@ -78,7 +78,7 @@ click upload. Browse to your mycert.cer and click the tick.
 
 Now grab your subscription ID from the portal, click "Subscription" on the settings page and copy the appropriate subscription ID.
 
-## Create a Docker Host on Microsoft Azure ##
+### Create a Docker Host on Microsoft Azure ###
 
 To create a host on Microsoft Azure run the following command in a
 Bash shell on your Windows client (replacing MACHINE_NAME with the
@@ -93,7 +93,7 @@ Docker Machine (e.g. "stage").
 This command will create a Virtual Machine on Azure, start it and
 configure it to work over SSH from your client.
 
-## Open Ports on the Docker Machine ##
+### Open Ports on the Docker Machine ###
 
 Our application will use port 80 for the web application and port 8080
 for the REST API. We will need to open these ports on our Docker
@@ -103,7 +103,7 @@ two new endpoints, one for the web appication (public port 80 to
 private port 8888) and one for the REST API (public port 8080 to the
 private port 8080).
 
-## Tell Docker to Use Your Docker Staging Host ##
+### Tell Docker to Use Your Docker Staging Host ###
 
 Run the following command in your Windows Bash shell in order to
 ensure that Docker will run against your staging server.
@@ -112,7 +112,7 @@ ensure that Docker will run against your staging server.
 
 Remember to cange MACHINE_NAME to the correct name, e.g. "stage"
 
-## Build the Container ##
+### Build the Container ###
 
 In the previous guide we built and ran the Java REST API container
 locally. We used the tag "latest" to indicate that it was the latest
@@ -126,7 +126,7 @@ Build the container with the following command:
     cd java
     docker build -t rest:0.1.0 .
 
-## Deploy the Java REST API Container ##
+### Deploy the Java REST API Container ###
 
 To deploy the container on your staging server run the following
 command in your Windows Bash shell:
@@ -141,7 +141,7 @@ yourself by visiting the API at the following URL
 Be sure to replace "MACHINE_NAME" with the name of your staging
 machine, e.g. "stage".
 
-## Build and Run The ASP.Net container ##
+### Build and Run The ASP.Net container ###
 
 The process for building and runing the ASP.Net container is the
 same. Run the following commands in your Windows Bash shell:
@@ -155,7 +155,7 @@ Once the container is running you can visit the web frontend at:
 
     http://MACHINE_NAME.cloudapp.net
 
-## Scripting Repetitive Tasks ##
+### Scripting Repetitive Tasks ###
 
 It is always a good idea to script repetitive tasks. To this end you
 can find "stage_asp.sh" and "stage_java.sh" scripts in the "script"
