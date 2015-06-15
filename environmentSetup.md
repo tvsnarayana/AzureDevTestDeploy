@@ -104,41 +104,6 @@ for the ASP.Net application:
   You may also want to open the port for the Java application as follows:
   
     - port 5000 on the production machine
-	  - port 5050 on the staging machine
-	  - port 5555 on the dev machine
+    - port 5050 on the staging machine
+    - port 5555 on the dev machine
     
-## Setting up the Development Container ##
- 
-Our development host will be where we run our development container. This
-container will perform a number of useful functions for us during the
-development process. However, we first need to do some setup work via SSH.
-In the future this configurtion step will go away as the Docker community
-are working on a better solution for sharing content from the client to 
-host.
-
-To connect to this machine first make sure that your currently active 
-docker-machine is the correct machine (by default called tutorialDev). The 
-following command will tell you which is the currently active docker
-machine:
-
-    $ docker-machine active
-
-If you need to change the currently active machine you can do so with:
-
-    $ docker-machine active tutorialDev
-
-Now you can SSH into the machine with:
-
-    $ docker-machine ssh
-    
-Now we want to share our source from the client machine with our development
-host machine. On your Windows client machine share the project directory with
-yourself and then run the following script on your client machine:
-
-    $ script/configureDevHyper-v.sh
-    
-This script will ask you for your password for your Windows user. If all went 
-well you will now be able to view your project files on the host machine in 
-the /home/docker/project folder.
-
-You are now ready to get to work. See the readme.md for some next steps.
