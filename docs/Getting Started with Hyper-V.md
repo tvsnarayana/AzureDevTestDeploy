@@ -177,7 +177,7 @@ deploy is the Java REST API. To do this run the following commans in
 your Windows Bash shell.
 
     cd java
-    docker build -t javaapp:latest .
+    docker build -t rest:latest .
 
 This command will build our Java application container and give it a
 name of "javaapp" and a tag of "latest". The first time you run it
@@ -198,7 +198,7 @@ the application or its environment then there is nothing to rebuild.
 To run the container on your Docker Host run the following command in
 your Windows Bash shell:
 
-    docker run -td -p 5555:8080 --name=dev_java javaapp:latest
+    docker run -td -p 5555:8080 --name=dev_rest rest:latest
 
 Almost immediatley your container will start. You can verify this to
 yourself by visiting the API at the following URL
@@ -218,8 +218,8 @@ same. Run the following commands in your Windows Bash shell:
 
     cd ..
     cd asp
-	docker build -t asp:latest .
-	docker run -td -p 8888:8888 --link dev_rest:rest --name=dev_asp asp:latest
+	docker build -t web:latest .
+	docker run -td -p 8888:8888 --link dev_rest:rest --name=dev_web web:latest
 
 As before the first time you run the build command it will take a few
 minutes. Subsequent runs will be much faster.
@@ -251,10 +251,10 @@ running container, rebuild it and restart it.
 
 To do this you run the following commands in your Windows Bash shell:
 
-    docker stop dev_asp
-    docker rm dev_asp
-	docker build -t asp:latest .
-	docker run -td -p 8888:8888 --name=dev_asp asp:latest
+    docker stop dev_web
+    docker rm dev_web
+	docker build -t web:latest .
+	docker run -td -p 80:8888 --link dev_rest:rest --name=dev_web web:latest
 
 Note how the container build is still very fast, even though we have
 made some changes to the applicaton. This is because all the
@@ -274,8 +274,21 @@ directory of the project. These two scripts will perform all of the
 steps above for building the ASP.Net and Java containers
 respectively. They should be run from the root of the project.
 
+There is also a "dev.sh" that will run both of the above scripts and
+thus build and deploy both the Java and ASP.Net applications.
+
+These scripts use some values that are imported from from a
+"script/config.sh". In order to create this file copy
+"script/config.tmpl" to "script/config.sh" and edit it. The fie should
+be self explanatory. For the dev environment all you need to configure
+is the DEV_MACHINE_NAME which is the value used in place of
+MACHINE_NAME in the above commands.
+
 Try them out now. Remove your edits from the asp/HomeModule.cs file
 and then execute the following commands from your Windows bash shell:
 
     cd ..
-    script/dev_asp.sh
+    script/dev.sh
+
+Of course using a more powerful configuration managemen tool would be
+a good next move, but that is out of scope for this guide.

@@ -13,14 +13,14 @@ docker-machine env $DEV_MACHINE_NAME
 cd asp
 
 # Build the container to ensure we pick up any changes
-docker build -f dev-Dockerfile -t asp:latest .
+docker build -t web:latest .
 
 # Stop, remove and restart the container
 echo "Stopping any running dev container for ASP.Net app"
-docker stop dev_asp
+docker stop dev_web
 echo "Removing any previous dev container ASP.Net app"
-docker rm dev_asp
+docker rm dev_web
 echo "Running an ASP.Net dev container"
-docker run -td -p 8888:8888 --name=dev_asp asp:latest
+docker run -td -p 8888:8888  --link dev_rest:rest --name=dev_web web:latest
 
 cd ..

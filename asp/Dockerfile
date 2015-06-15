@@ -6,5 +6,5 @@ RUN ["dnu", "restore"]
 
 COPY . /app
 
-EXPOSE 8888
-ENTRYPOINT ["dnx", ".", "kestrel-dev"]
+EXPOSE 80
+ENTRYPOINT ["dnx", ".", "kestrel"]

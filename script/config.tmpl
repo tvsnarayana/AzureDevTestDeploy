@@ -2,20 +2,10 @@
 # for each of your dev, stage and production Hosts
 DEV_MACHINE_NAME=tutorialDev
 STAGE_MACHINE_NAME=tutorialStage
-PROD_MACHINE_NAME=tutorialProd
 
 # Version numbers for your ASP and Java applications on the staging server
 # When building Dev containers you will always use "latest", when building
 # for the staging server you will always use the version number in 
 # "ASP|JAVA_STAGE_VERSION"
-ASP_STAGE_VERSION=0.0.1
-JAVA_STAGE_VERSION=0.0.1
-
-# Variables needed to workaround bug in folder sharing
-# on Windows, see configureDevHyper-v.sh
-# These are the values from your Windows client machine.
-# If you are domain joined do not include the domain in 
-# USER_NAME
-USER_NAME=< WINDOWS CLIENT USERNAME >
-CLIENT_IP=<WINDOWS CLIENT IP >
-CLIENT_PATH_TO_PROJECT=< WINDOWS CLIENT PATH TO PROJECT FILES, EXCLUDING DRIVE LETTER, E.G. Users/username/path/to/folder >
+ASP_STAGE_VERSION=0.1.0
+JAVA_STAGE_VERSION=0.1.0

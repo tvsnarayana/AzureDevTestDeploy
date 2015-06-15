@@ -9,20 +9,20 @@
 
 source script/config.sh
 
-echo "Staging Java application version $JAVA_STAGE_VERSION on $STAGE_MACHINE_NAME"
+echo "Staging Java application version $REST_STAGE_VERSION on $STAGE_MACHINE_NAME"
 eval "$(docker-machine env $STAGE_MACHINE_NAME)"
 
 cd java
 
 # Build the container to ensure we pick up any changes
-docker build -t javaapp:$JAVA_STAGE_VERSION .
+docker build -t rest:$REST_STAGE_VERSION .
 
 # Stop, remove and restart the container
-echo "Stopping any running staged container"
-docker stop stage_java
-echo "Removing any previously staged container"
-docker rm stage_java
+echo "Stopping any running staged rest container on $STAGE_MACHINE_NAME"
+docker stop stage_rest
+echo "Removing any previously staged rest container on $STAGE_MACHINE_NAME"
+docker rm stage_rest
 echo "Running a container"
-docker run -t -d -p 5050:8080 --name=stage_java javaapp:$JAVA_STAGE_VERSION
+docker run -t -d -p 5050:8080 --name=stage_rest rest:$REST_STAGE_VERSION
 
 cd ..

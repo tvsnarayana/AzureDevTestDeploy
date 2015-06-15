@@ -124,14 +124,14 @@ first test version we will call it 0.1.0.
 Build the container with the following command:
 
     cd java
-    docker build -t javaapp:0.1.0 .
+    docker build -t rest:0.1.0 .
 
 ## Deploy the Java REST API Container ##
 
 To deploy the container on your staging server run the following
 command in your Windows Bash shell:
 
-    docker run -td -p 8080:8080 --name=rest javaapp:0.1.0
+    docker run -td -p 8080:8080 --name=stage_rest rest:0.1.0
 
 Almost immediatley your container will start. You can verify this to
 yourself by visiting the API at the following URL
@@ -148,13 +148,37 @@ same. Run the following commands in your Windows Bash shell:
 
     cd ..
     cd asp
-	docker build -t asp:0.1.0 .
-	docker run -td -p 80:8888 --link rest:rest --name=asp asp:0.1.0
+	docker build -t asp:0.1.0 
+	docker run -td -p 80:80 --link stage_rest:rest --name=web web:0.1.0
 
 Once the container is running you can visit the web frontend at:
 
     http://MACHINE_NAME.cloudapp.net
 
+## Scripting Repetitive Tasks ##
 
+It is always a good idea to script repetitive tasks. To this end you
+can find "stage_asp.sh" and "stage_java.sh" scripts in the "script"
+directory of the project. These two scripts will perform all of the
+steps above for building and deploying the ASP.Net and Java containers
+respectively. They should be run from the root of the project. There
+is also a "stage.sh" script that will stage both applications at the
+same time.
 
+These scripts use some values that are imported from from a
+"script/config.sh" that you created in an earlier guide. You will need
+to set the STAGE_MACHINE_NAME, which is the value used in place of
+MACHINE_NAME in the above commands. You will also want to set the
+ASP_STAGE_VERSION and JAVA_STAGE_VERSION which will be used to tag the
+container builds (e.g. asp:ASP_STAGE_VERSION). These values should be
+increased each time we stage a new version of the application.
+
+Try them out now execute the following commands from your Windows bash
+shell:
+
+    cd ..
+    script/stage.sh
+
+Of course using a more powerful configuration managemen tool would be
+a good next move, but that is out of scope for this guide.
 

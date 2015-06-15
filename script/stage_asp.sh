@@ -15,14 +15,14 @@ eval "$(docker-machine env $STAGE_MACHINE_NAME)"
 cd asp
 
 # Build the container to ensure we pick up any changes
-docker build -f stage-Dockerfile -t asp:$ASP_STAGE_VERSION .
+docker build -t web:$ASP_STAGE_VERSION .
 
 # Stop, remove and restart the container
 echo "Stopping any running staged container"
-docker stop stage_asp
+docker stop stage_web
 echo "Removing any previously staged container"
-docker rm stage_asp
+docker rm stage_web
 echo "Running a container"
-docker run -t -d -p 8080:8080 --name=stage_asp asp:$ASP_STAGE_VERSION
+docker run -t -d -p 80:80 --link stage_rest:rest --name=stage_web web:$ASP_STAGE_VERSION
 
 cd ..

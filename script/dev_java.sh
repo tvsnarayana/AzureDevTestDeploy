@@ -3,8 +3,8 @@
 #
 # If docker-machine is present assume that
 # docker-machine is managing the docker
-# hosts and us that. Otherwise use the same
-# machine that this script is running on.
+# hosts and use that. Otherwise use the
+# local machine.
 ###########################################
 
 source script/config.sh
@@ -15,14 +15,14 @@ eval "$(docker-machine env $DEV_MACHINE_NAME)"
 cd java
 
 # Build the container to ensure we pick up any changes
-docker build -t javaapp:latest .
+docker build -t rest:latest .
 
 # Stop, remove and restart the container
 echo "Stopping any running dev container"
-docker stop dev_java
+docker stop dev_rest
 echo "Removing any previously started dev container"
-docker rm dev_java
+docker rm dev_rest
 echo "Running a dev container"
-docker run -t -d -p 5555:8080 --name=dev_java javaapp:latest
+docker run -t -d -p 5555:8080 --name=dev_rest rest:latest
 
 cd ..
