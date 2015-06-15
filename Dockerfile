@@ -1,5 +1,10 @@
 FROM ubuntu:14.04
 
+######################################
+# Docker In Docker
+# See https://github.com/jpetazzo/dind
+######################################
+
 RUN apt-get update -qq && apt-get install -qqy \
     apt-transport-https \
     ca-certificates \
