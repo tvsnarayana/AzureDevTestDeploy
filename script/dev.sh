@@ -1,20 +1,21 @@
-###########################################
-# Build and run the dev container
-###########################################
+####################################################################
+# Build and Run all components on Development Machine
+#
+# If docker-machine is present assume that
+# docker-machine is managing the docker
+# hosts and us that. Otherwise use the same
+# machine that this script is running on.
+####################################################################
 
-source script/config.sh
+echo '####################################################################'
+echo '# Build and Run Java REST API'
+echo '####################################################################'
 
-echo "Creating Dev container on $DEV_MACHINE_NAME"
-eval "$(docker-machine env $DEV_MACHINE_NAME)"
+script/dev_java.sh
 
-docker build -t dev:latest .
+echo '####################################################################'
+echo '# Build and Stage ASP Application'
+echo '####################################################################'
 
-# Stop, remove and restart the container
-echo "Stopping any running dev container"
-docker stop dev
-echo "Removing any previous dev container"
-docker rm dev
-echo "Running a dev container on $DEV_MACHINE_NAME"
-docker run --privileged -td -e LOG=file -v //home/docker/project:/project --name=dev dev:latest
-docker exec dev bash -ci script/dev_asp.sh
-docker exec dev bash -ci script/dev_java.sh
+script/dev_asp.sh
+
