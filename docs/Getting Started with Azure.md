@@ -136,7 +136,7 @@ command in your Windows Bash shell:
 Almost immediatley your container will start. You can verify this to
 yourself by visiting the API at the following URL
 
-    http://MACHINE_NAME.cloudapp.net:5555/JerseyHelloWorld/rest/helloworld
+    http://MACHINE_NAME.cloudapp.net:5050/JerseyHelloWorld/rest/helloworld
 
 Be sure to replace "MACHINE_NAME" with the name of your staging
 machine, e.g. "stage".

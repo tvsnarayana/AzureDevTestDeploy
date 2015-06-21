@@ -21,6 +21,6 @@ docker stop dev_web
 echo "Removing any previous dev container ASP.Net app"
 docker rm dev_web
 echo "Running an ASP.Net dev container"
-docker run -td -p 8888:8888  --link dev_rest:rest --name=dev_web web:latest
+docker run -td -p 8888:80 --link dev_rest:rest --name=dev_web web:latest
 
 cd ..
