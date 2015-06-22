@@ -20,8 +20,8 @@ with good defaults where we can. Start by copying the template:
 
     $ cp script/config.tmpl config.sh
     
-Now edit this file, being sure to change any entries of the form
-'< DESCRIPTIVE TEST >'.
+Now edit this file, being sure to change (at least) the
+STAGING_MACHINE_NAME which must be world unique.
 
 ## Install Docker and Docker Machine ##
 
