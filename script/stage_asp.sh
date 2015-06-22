@@ -18,9 +18,9 @@ cd asp
 docker build -t web:$ASP_STAGE_VERSION .
 
 # Stop, remove and restart the container
-echo "Stopping any running staged container"
+echo "Stopping any running (staged) web application container"
 docker stop stage_web
-echo "Removing any previously staged container"
+echo "Removing any previously (staged) web application container"
 docker rm stage_web
 echo "Running a container"
 docker run -t -d -p 80:80 --link stage_rest:rest --name=stage_web web:$ASP_STAGE_VERSION

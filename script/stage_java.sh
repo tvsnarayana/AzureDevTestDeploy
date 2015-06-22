@@ -18,11 +18,11 @@ cd java
 docker build -t rest:$REST_STAGE_VERSION .
 
 # Stop, remove and restart the container
-echo "Stopping any running staged rest container on $STAGE_MACHINE_NAME"
+echo "Stopping any running (staged) REST application container on $STAGE_MACHINE_NAME"
 docker stop stage_rest
-echo "Removing any previously staged rest container on $STAGE_MACHINE_NAME"
+echo "Removing any previously (staged) REST application container on $STAGE_MACHINE_NAME"
 docker rm stage_rest
-echo "Running a container"
+echo "Running a REST application container"
 docker run -t -d -p 5050:8080 --name=stage_rest rest:$REST_STAGE_VERSION
 
 cd ..
