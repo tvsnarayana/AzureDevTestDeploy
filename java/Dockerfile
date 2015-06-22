@@ -1,13 +1,14 @@
 FROM tomcat
 
 RUN apt-get -qq update
+RUN apt-get -qqy install openjdk-7-jdk
 RUN apt-get -qqy install maven
 
-#COPY . /app
-#WORKDIR /app
-#RUN mvn clean package
+COPY . /app
+WORKDIR /app
+RUN mvn clean package
 
-COPY ./target/*.war /usr/local/tomcat/webapps/
+RUN cp /app/target/*.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
