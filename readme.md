@@ -1,6 +1,8 @@
-This is a very simple demo application that is used to show a web client
-applicatoin and a Java application executing in Docker containers. The
-application is very simple, a web client application communicates
+This is a very simple demo application that is used to show a web
+client applicatoin and a Java application executing in Docker
+containers. We also include a simple load testing container. 
+
+The application is very simple, a web client application communicates
 with a Java REST API and returns the information to the user.
 
 This is not a real application. It doesn't do anything useful and it
@@ -16,9 +18,10 @@ probably want to start there.
 
 # Setup #
 
-There are a few things you need to do to setup your environment. Take
-a look at the file environmentSetup.md and come back here when you are 
-done.
+There are a few things you need to do to setup your environment, such
+as installing docker clients and creating host machines on which to
+deploy your containers. Take a look at the file environmentSetup.md
+and come back here when you are done.
 
 # Scripts #
 
@@ -28,6 +31,11 @@ our build and development environments.
 Copy /scripts/config.tmpl to scripts/config.sh before using these
 scripts. You might want to edit scripts/config.sh, see the file for
 details.
+
+The top level scripts, dev.sh and stage.sh, are the best place to
+start, the first will deploy and load test the application on your dev
+host while the second will deploy and load test the application on the
+staging server.
 
 # Web Application: Hello Web #
 
