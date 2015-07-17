@@ -12,6 +12,15 @@ Windows users should install Git for Windows from http://msysgit.github.io/.
 This will provide both Git and a Bash shell. We will use the Bash shell as a
 convenience since the scripts we have built are Bash scripts.
 
+You will also need to ensure that either Hyper-V is turned on or you
+have installed Virtual Box (version 4.3.x from
+https://www.virtualbox.org/wiki/Download_Old_Builds_4_3)
+
+## Linux Pre-Requisites ##
+
+You will need to install virtualbox 4.3.x from
+https://www.virtualbox.org/wiki/Download_Old_Builds_4_3
+
 ## Configure.sh ##
 
 The helper scripts provided are configured in scripts/config.sh. You will
@@ -25,85 +34,115 @@ STAGING_MACHINE_NAME which must be world unique.
 
 ## Install Docker and Docker Machine ##
 
-We will use Docker Machine to create our Docker Hosts. 
+We will use Docker Machine to create our Docker Hosts. You will then
+use the Docker command to manage containers on those hosts. The
+sections below briefly describe how to install these tools, see
+http://docs.docker.com/machine/ for more information.
+
+### Windows Docker Install ###
 
 On Windows open a Bash shell (search for "Unix Bash" after installing Git
 for Windows):
 
-$ curl -L https://get.docker.com/builds/Windows/x86_64/docker-latest.exe > /bin/docker
-$ curl -L https://github.com/docker/machine/releases/download/v0.2.0/docker-machine_windows-amd64.exe > /bin/docker-machine
+    curl -L https://get.docker.com/builds/Windows/x86_64/docker-latest.exe > /bin/docker
+    curl -L https://github.com/docker/machine/releases/download/v0.2.0/docker-machine_windows-amd64.exe > /bin/docker-machine
 
-See the Docker website for instructions on installing Docker and Docker 
-Machine on other platforms see: http://docs.docker.com/machine/
 
-### Configure Docker Machine ##
+### Linux Docker Install ###
 
-Docker Machine needs to have access to your Azure subscription. If you don't
-already have an Azure subscription you can get a free trial at 
+In a shell type:
+
+    sudo wget https://github.com/docker/machine/releases/download/v0.3.0/docker-machine_linux-amd64 -O /usr/local/bin/docker-machine
+    sudo chmod +x /usr/local/bin/docker-machine
+    sudo wget https://get.docker.com/builds/Linux/x86_64/docker-latest -O /usr/local/bin/docker
+    sudo chmod +x /usr/local/bin/docker
+
+### Verify Install ##
+
+You should now be able to run the following commands and see the
+appropriate version numbers.
+
+    docker-machine --version
+    docker --version
+
+### Configure Docker Machine for Azure##
+
+If you want to use Azure as a cloud provider you need to configure
+Docker Machine to use your subscription. If you don't already have an
+Azure subscription you can get a free trial at
 http://azure.microsoft.com/en-us/pricing/free-trial/
 
-Once you have an active subscription run the following commands in a bash shell:
+Once you have an active subscription run the following commands in a shell:
 
-$ openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem
-$ openssl pkcs12 -export -out mycert.pfx -in mycert.pem -name "My Certificate"
-$ openssl x509 -inform pem -in mycert.pem -outform der -out mycert.cer
+    openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem
+    openssl pkcs12 -export -out mycert.pfx -in mycert.pem -name "My Certificate"
+    openssl x509 -inform pem -in mycert.pem -outform der -out mycert.cer
 
-Now you need to go to the Azure portal (https://portal.azure.com). In the "Settings" 
+Now you need to go to the Azure portal (https://manage.windowsazure.com). In the "Settings" 
 section select "Management Certificates" and upload mycert.cer.
 
-Grab your subscription ID from the portal, you will need this in the
-next step.
+Grab your subscription ID from the portal and record this in your
+script/config.sh file as the value for SUBSCRIPTION_ID.
 
 ## Create Docker Hosts ##
 
-As a minimum you will need a Docker host for development. You'll most likely
-want this to be on your local machine. So run the following command (as an 
-administrator):
+We will set up Docker host machines as defined in the
+/script/config.sh file. This includes:
 
-$ docker-machine create -d hyper-v MACHINE_NAME
+  1. dev host machine (default type: Hype-V, default name: dev)
+  2. staging host machine (default type: Hype-V, default name: dev)
 
-If you want to push the application to a staging server for testing before 
-production you will need a host to act as your staging server. This could be 
-the same host as your development machine since this is not a real application. 
-Although in production you would likely want it to be a separate host. This
-could be a local or an on-premise machine, alternatively it could be cloud
-based machine. We'll put ours in Microsoft Azure:
+Remember, the name of the staging host in script/config.sh must be
+world unique as it will double as the dns name.
 
-$ docker-machine create -d azure --azure-location="Central US" --azure-subscription-id="AZURE_SUBSCRIPTION_ID" --azure-subscription-cert="mycert.pem" MACHINE_NAME
+Now you can look a tthe machine status with:
 
-In the above command be sure to
-change AZURE_SUBSCRIPTION_ID to your subscription ID retrieved from the portal
-and the MACHINE_NAME with the name you set in script/config.sh.
+    docker-machine ls
 
-You may also want to create a Docker host to act as your "production" server. 
-Again, since this is just an example project you could use the same machine as your
-development machine. Though we will use a separate Azure machine:
-
-$ docker-machine create -d azure --azure-location="Central US" --azure-subscription-id="AZURE_SUBSCRIPTION_ID" --azure-subscription-cert="mycert.pem" MACHINE_NAME
-
-The names of the Docker hosts used by the scripts are set in the script/config.sh 
-file. These should match the machine names used above. By default
-these are tutorialDev, tutorialStage and tutorialProd. If you want to use just
-one or two Docker hosts, or you want to use different names for your machines
-edit the values in script/config.sh. The default values are:
-
-## Open Ports on Docker Machines ##
+### Open Ports on cloud hosted Docker Machines ###
 
 It is necessary to open the appropriate ports on your Docker hosts to allow 
 access to the applications. At a minimum you need to open the following ports
 for the ASP.Net application:
 
-    - port 80 on the production machine
-    - port 8080 on the staging machine
-    - port 8888 on the dev machine
-  
-  Note we use a different port for each role to allow a single host to act as
-  all three machines. In a real project you would likely have separate machines
-  for each of these roles and thus we would likely use the same port.
-  
-  You may also want to open the port for the Java application as follows:
-  
-    - port 5000 on the production machine
-    - port 5050 on the staging machine
-    - port 5555 on the dev machine
-    
+    - port 80 for the webapp on the staging machine
+    - port 8080 for the REST API on the staging machine
+
+## Running the Application ##
+
+Now you are all set up, to build and run the application on the dev
+server run:
+
+  script/dev.sh
+
+The first time you run this command Docker will pull down the necessry
+container layers and update the packages in the container, this can
+take a little while. Once you have the layers locally subsequent
+builds will be much faster.
+
+Once everything is complete you can view the results with:
+
+    http://DEV_MACHINE_IP:$DEV_WEBAPP_PORT
+    http://DEV_MACHINE_IP:8080/JerseyHelloWorld/rest/helloworld
+
+Once enough time has elapsed for the load tests to complete you will
+also be able to see the results of these tests by running the command:
+
+    eval "$(docker-machine env $DEV_MACHINE_NAME)"
+    docker logs load
+
+To build and run on the staging server run:
+
+    script/stage.sh
+
+Once everything is complete you can view the results with:
+
+    http://127.0.0.1:8888
+    http://127.0.0.1:8080/JerseyHelloWorld/rest/helloworld
+
+Once enough time has elapsed for the load tests to complete you will
+also be able to see the results of these tests by running the command:
+
+    eval "$(docker-machine env $DEV_MACHINE_NAME)"
+    docker logs load
+

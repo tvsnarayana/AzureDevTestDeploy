@@ -7,15 +7,22 @@
 # machine that this script is running on.
 ####################################################################
 
+source script/config.sh
+
 echo '####################################################################'
-echo '# Build and Run Java REST API'
+echo '# Build and Run Java REST API on the Dev machine ($DEV_MACHINE_NAME)'
 echo '####################################################################'
 
 script/dev_java.sh
 
 echo '####################################################################'
-echo '# Build and Stage the Web Application'
+echo '# Build and Run the Web Application on the Dev Machine ($DEV_MACHINE_NAME)'
 echo '####################################################################'
 
 script/dev_web.sh
+
+echo '####################################################################'
+echo '# If all went well you can now visit your application'
+echo '# at http://127.0.0.1:$DEV_WEBAPP_PORT'
+echo '####################################################################'
 

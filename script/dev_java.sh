@@ -23,6 +23,6 @@ docker stop dev_rest
 echo "Removing any previously started dev container"
 docker rm dev_rest
 echo "Running a dev container"
-docker run -t -d -p 5555:8080 --name=dev_rest rest:latest
+docker run -t -d -p 8080:8080 --name=dev_rest rest:latest
 
 cd ..

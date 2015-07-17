@@ -7,10 +7,12 @@
 # machine that this script is running on.
 ###########################################
 
+source script/config.sh
+
 eval "$(docker-machine env $DEV_MACHINE_NAME)"
 docker-machine env $DEV_MACHINE_NAME
 
-cd asp
+cd web
 
 # Build the container to ensure we pick up any changes
 docker build -t web:latest .
@@ -21,6 +23,6 @@ docker stop dev_web
 echo "Removing any previous dev container web app"
 docker rm dev_web
 echo "Running a web app dev container"
-docker run -td -p 8888:80 --link dev_rest:rest --name=dev_web web:latest
+docker run -td -p $DEV_WEBAPP_PORT:80 --link dev_rest:rest --name=dev_web web:latest
 
 cd ..

@@ -23,6 +23,6 @@ docker stop stage_rest
 echo "Removing any previously (staged) REST application container on $STAGE_MACHINE_NAME"
 docker rm stage_rest
 echo "Running a REST application container"
-docker run -t -d -p 5050:8080 --name=stage_rest rest:$REST_STAGE_VERSION
+docker run -t -d -p 8080:8080 --name=stage_rest rest:$REST_STAGE_VERSION
 
 cd ..
