@@ -43,3 +43,13 @@ just a different programming language.
 
 Based on http://javahash.com/jersey-hello-world-example/
 
+# Load Testing #
+
+While it might seem strange to load test a Hello World application
+we've included a container that does just that! 
+
+The loadTest container will run a set of tests against the web
+application each time it is staged. To view the log output once the
+execution has completed run the command:
+
+docker logs stage_load
