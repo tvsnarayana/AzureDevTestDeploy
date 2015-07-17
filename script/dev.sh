@@ -22,6 +22,19 @@ echo '####################################################################'
 script/dev_web.sh
 
 echo '####################################################################'
+echo '# Build and Run the load tester on the Dev Machine ($DEV_MACHINE_NAME)'
+echo '####################################################################'
+
+script/dev_load.sh
+
+echo '####################################################################'
+echo '# View the results of the load testing with "docker logs dev_load"'
+echo '####################################################################'
+
+echo ''
+echo ''
+
+echo '####################################################################'
 echo '# If all went well you can now visit your application'
 echo '# at http://127.0.0.1:$DEV_WEBAPP_PORT'
 echo '####################################################################'
