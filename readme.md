@@ -33,6 +33,12 @@ details.
 
 This is about as simple as a web application gets. 
 
+Originally this part of the application was a ASP.Net
+application. However, we found that this was making things difficult
+for people coming from a non ASP background. So we replaced it with a
+much simpler PHP application. Things are essentially the same, it's
+just a different programming language.
+
 # Java Hello REST API #
 
 Based on http://javahash.com/jersey-hello-world-example/

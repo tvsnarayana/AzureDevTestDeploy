@@ -237,7 +237,7 @@ application content and the results of a call to the Java application.
 ### Lets make a change to our Application Code ###
 
 Now we will edit the application code. In your favourite editor open
-www/index.html and change the <h1> text to something unique.
+www/html/index.php and change the <h1> text to something unique.
 
 We have edited the content of the file but if you revisit the web page
 you will not see the changes you made. This is because containers are
