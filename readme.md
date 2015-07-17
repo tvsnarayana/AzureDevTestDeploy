@@ -1,6 +1,6 @@
-This is a very simple demo application that is used to show an ASP.Net
+This is a very simple demo application that is used to show a web client
 applicatoin and a Java application executing in Docker containers. The
-application is very simple, an ASP.Net web application communicates
+application is very simple, a web client application communicates
 with a Java REST API and returns the information to the user.
 
 This is not a real application. It doesn't do anything useful and it
@@ -16,7 +16,7 @@ probably want to start there.
 
 # Setup #
 
-There are a few tihngs you need to do to setup your environment. Take
+There are a few things you need to do to setup your environment. Take
 a look at the file environmentSetup.md and come back here when you are 
 done.
 
@@ -29,12 +29,9 @@ Copy /scripts/config.tmpl to scripts/config.sh before using these
 scripts. You might want to edit scripts/config.sh, see the file for
 details.
 
-# ASP.net Hello Web #
+# Web Application: Hello Web #
 
-Based on the Hello world using Nancy framework. See https://github.com/NancyFx/Nancy/wiki/Introduction
-Initial project created using Yeoman: npm install -g yo grunt-cli generator-aspnet bower; yo aspnet
-This async tutorial was really useful too: http://blog.jonathanchannon.com/2013/08/24/async-route-handling-with-nancy/
-
+This is about as simple as a web application gets. 
 
 # Java Hello REST API #
 

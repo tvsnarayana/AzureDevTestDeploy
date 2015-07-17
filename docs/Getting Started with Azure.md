@@ -10,16 +10,16 @@ completed the previous guide before starting this one.
 We will setup a Docker Host on an Azure Virtual machine and deploy two
 containers to it. The first container will have a Java application
 which provides a very simple REST API. The second container will have
-a simple ASP.Net web page which displays information from both the
-ASP.Net applicaton and the Java REST API.
+a simple web application which displays information from both the
+web applicaton and the Java REST API.
 
 While this document focuses on Windows as the client machine and Azure
 as the cloud provider these instructions should be almost identical
 for other operating systems and clouds. Where there are differences we
 will highlight them in the text.
 
-The application we will build is nothing more than a simple "hello
-world" using a ASP.NET web application connecting to a Java REST API.
+The application we will build is nothing more than a simple two
+container "hello world".
 
 ## Why? ##
 
@@ -38,7 +38,6 @@ tested containers to a produciton server.
     * How to create an Microsoft Azure subscription (free trial avialable)
     * How to use Docker Machine to create a Docker Host on Microsoft Azure
 	* How to build an cloud deploy a containerized two tier application
-      using ASP.NET and Java using Docker
 
 ## Tools You will Use ##
 
@@ -141,14 +140,14 @@ yourself by visiting the API at the following URL
 Be sure to replace "MACHINE_NAME" with the name of your staging
 machine, e.g. "stage".
 
-### Build and Run The ASP.Net container ###
+### Build and Run The Web Application Container ###
 
-The process for building and runing the ASP.Net container is the
-same. Run the following commands in your Windows Bash shell:
+The process for building and runing the web application container is
+the same. Run the following commands in your Bash shell:
 
     cd ..
     cd asp
-	docker build -t asp:0.1.0 
+	docker build -t web:0.1.0 
 	docker run -td -p 80:80 --link stage_rest:rest --name=web web:0.1.0
 
 Once the container is running you can visit the web frontend at:
@@ -158,19 +157,19 @@ Once the container is running you can visit the web frontend at:
 ### Scripting Repetitive Tasks ###
 
 It is always a good idea to script repetitive tasks. To this end you
-can find "stage_asp.sh" and "stage_java.sh" scripts in the "script"
+can find "stage_web.sh" and "stage_java.sh" scripts in the "script"
 directory of the project. These two scripts will perform all of the
-steps above for building and deploying the ASP.Net and Java containers
-respectively. They should be run from the root of the project. There
-is also a "stage.sh" script that will stage both applications at the
-same time.
+steps above for building and deploying the web application and Java
+containers respectively. They should be run from the root of the
+project. There is also a "stage.sh" script that will stage both
+applications at the same time.
 
 These scripts use some values that are imported from from a
 "script/config.sh" that you created in an earlier guide. You will need
 to set the STAGE_MACHINE_NAME, which is the value used in place of
 MACHINE_NAME in the above commands. You will also want to set the
-ASP_STAGE_VERSION and JAVA_STAGE_VERSION which will be used to tag the
-container builds (e.g. asp:ASP_STAGE_VERSION). These values should be
+WEB_STAGE_VERSION and REST_STAGE_VERSION which will be used to tag the
+container builds (e.g. web:WEB_STAGE_VERSION). These values should be
 increased each time we stage a new version of the application.
 
 Try them out now execute the following commands from your Windows bash

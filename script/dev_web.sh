@@ -1,5 +1,5 @@
 ###########################################
-# Build and run the ASP.Net application.
+# Build and run the web application.
 #
 # If docker-machine is present assume that
 # docker-machine is managing the docker
@@ -16,11 +16,11 @@ cd asp
 docker build -t web:latest .
 
 # Stop, remove and restart the container
-echo "Stopping any running dev container for ASP.Net app"
+echo "Stopping any running dev container for web app"
 docker stop dev_web
-echo "Removing any previous dev container ASP.Net app"
+echo "Removing any previous dev container web app"
 docker rm dev_web
-echo "Running an ASP.Net dev container"
+echo "Running a web app dev container"
 docker run -td -p 8888:80 --link dev_rest:rest --name=dev_web web:latest
 
 cd ..

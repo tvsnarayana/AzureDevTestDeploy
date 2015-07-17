@@ -5,15 +5,15 @@
 We will setup a Docker Host on your Windows machine and deploy two
 containers to it. The first container will have a Java application
 which provides a very simple REST API. The second container will have
-a simple ASP.Net web page which displays information from both the
-ASP.Net applicaton and the Java REST API.
+a simple web application which displays information from both the
+web applicaton and the Java REST API.
 
 While this document focuses on Windows these instructions should be
 almost identical for other operating systems. Where there are
 differences we will highlight them in the text.
 
 The application we will build is nothing more than a simple "hello
-world" using a ASP.NET web application connecting to a Java REST API.
+world" using a web application connecting to a Java REST API.
 
 ## Why? ##
 
@@ -30,7 +30,6 @@ the tested containers to a produciton server.
     * How to install Docker and Docker Machine on Windows
     * How to use Docker Machine to create a Docker Host on Hyper-v
 	* How to build an deploy a containerized two tier application
-      using ASP.NET and Java using Docker
 
 ## Tools You will Use ##
 
@@ -211,10 +210,10 @@ Docker Host". Note that the port number we are using here is 5555 as
 defined in the "-p" switch of the command above. It is mapped to port
 8080 on the container which is the default port used by Tomcat.
 
-### Build and Run The ASP.Net container ###
+### Build and Run The Web Application Container ###
 
-The process for building and runing the ASP.Net container is the
-same. Run the following commands in your Windows Bash shell:
+The process for building and runing the web application container is
+the same. Run the following commands in your Windows Bash shell:
 
     cd ..
     cd asp
@@ -232,24 +231,22 @@ Once the container is running you can visit the web frontend at:
 
     http://[IP_NUMBER]:8888
 
-You should see a simple page which is built from a combination of ASP
-content and the results of a call to the Java application.
+You should see a simple page which is built from a combination of web
+application content and the results of a call to the Java application.
 
 ### Lets make a change to our Application Code ###
 
 Now we will edit the application code. In your favourite editor open
-asp/HomeModule.cs and find the line which starts with "var
-result". Change the string in this line to say something unique to
-you and save the file.
+www/index.html and change the <h1> text to something unique.
 
-We have edited the content of the file but if you revisit the ASP.Net
-web page you will not see the changes you made. This is because
-containers are intended to be immutable. The Container is using a
-snapshot of your application code taken when you ran the build command
-above. Therefore to see the changes we need to stop the currently
-running container, rebuild it and restart it.
+We have edited the content of the file but if you revisit the web page
+you will not see the changes you made. This is because containers are
+intended to be immutable. The Container is using a snapshot of your
+application code taken when you ran the build command above. Therefore
+to see the changes we need to stop the currently running container,
+rebuild it and restart it.
 
-To do this you run the following commands in your Windows Bash shell:
+To do this you run the following commands in your Bash shell:
 
     docker stop dev_web
     docker rm dev_web
@@ -269,13 +266,13 @@ you should see the changed text in the welcome.
 ### Scripting Repetitive Tasks ###
 
 It is always a good idea to script repetitive tasks. To this end you
-can find "dev_asp.sh" and "dev_java.sh" scripts in the "script"
+can find "dev_web.sh" and "dev_java.sh" scripts in the "script"
 directory of the project. These two scripts will perform all of the
-steps above for building the ASP.Net and Java containers
+steps above for building the web application and Java containers
 respectively. They should be run from the root of the project.
 
 There is also a "dev.sh" that will run both of the above scripts and
-thus build and deploy both the Java and ASP.Net applications.
+thus build and deploy both the Java and web applications.
 
 These scripts use some values that are imported from from a
 "script/config.sh". In order to create this file copy
@@ -284,7 +281,7 @@ be self explanatory. For the dev environment all you need to configure
 is the DEV_MACHINE_NAME which is the value used in place of
 MACHINE_NAME in the above commands.
 
-Try them out now. Remove your edits from the asp/HomeModule.cs file
+Try them out now. Remove your edits from the www/index.html file
 and then execute the following commands from your Windows bash shell:
 
     cd ..

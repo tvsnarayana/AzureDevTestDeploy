@@ -14,8 +14,8 @@ echo '####################################################################'
 script/dev_java.sh
 
 echo '####################################################################'
-echo '# Build and Stage ASP Application'
+echo '# Build and Stage the Web Application'
 echo '####################################################################'
 
-script/dev_asp.sh
+script/dev_web.sh
 

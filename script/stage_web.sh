@@ -1,5 +1,5 @@
 ###########################################
-# Build and run the ASP.Net application
+# Build and run the web client application
 #
 # If docker-machine is present assume that
 # docker-machine is managing the docker
@@ -9,10 +9,10 @@
 
 source script/config.sh
 
-echo "Staging ASP application version $WEB_STAGE_VERSION on $STAGE_MACHINE_NAME"
+echo "Staging web client application version $WEB_STAGE_VERSION on $STAGE_MACHINE_NAME"
 eval "$(docker-machine env $STAGE_MACHINE_NAME)"
 
-cd asp
+cd web
 
 # Build the container to ensure we pick up any changes
 docker build -t web:$WEB_STAGE_VERSION .
