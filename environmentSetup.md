@@ -45,7 +45,7 @@ On Windows open a Bash shell (search for "Unix Bash" after installing Git
 for Windows):
 
     curl -L https://get.docker.com/builds/Windows/x86_64/docker-latest.exe > /bin/docker
-    curl -L https://github.com/docker/machine/releases/download/v0.2.0/docker-machine_windows-amd64.exe > /bin/docker-machine
+    curl -L https://github.com/docker/machine/releases/download/v0.3.0/docker-machine_windows-amd64.exe > /bin/docker-machine
 
 
 ### Linux Docker Install ###
