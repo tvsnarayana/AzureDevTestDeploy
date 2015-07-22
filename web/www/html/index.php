@@ -16,7 +16,6 @@
        }
 
        curl_close($curl);
-       echo $curl_response;
     ?>
     <p>The Java REST API says: "<?php echo $curl_response ?>"</p>
   </body>
