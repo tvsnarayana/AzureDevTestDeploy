@@ -1,5 +1,7 @@
 package com.microsoft.helloworld;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,6 +19,8 @@ public class HelloWorldRest {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String ping() {
-	return "Hello from your Dockerized API App (written in Java)";
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss zzzz");
+        String formattedDate = formatter.format(new Date());
+      	return "Hello from your Dockerized API App (written in Java), it's now " + formattedDate;
     }
 }
