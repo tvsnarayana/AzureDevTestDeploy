@@ -45,8 +45,9 @@ On Windows open a Bash shell (search for "Unix Bash" after installing Git
 for Windows):
 
     curl -L https://get.docker.com/builds/Windows/x86_64/docker-latest.exe > /bin/docker
-    curl -L https://github.com/docker/machine/releases/download/v0.3.0/docker-machine_windows-amd64.exe > /bin/docker-machine
+    curl -L -k https://github.com/docker/machine/releases/download/v0.3.0/docker-machine_windows-amd64.exe > /bin/docker-machine
 
+NOTE: You might want to check whether v0.3.1 is the latest version by visiting the [Docker Machine releases page](https://github.com/docker/machine/releases)
 
 ### Linux Docker Install ###
 
@@ -56,6 +57,9 @@ In a shell type:
     sudo chmod +x /usr/local/bin/docker-machine
     sudo wget https://get.docker.com/builds/Linux/x86_64/docker-latest -O /usr/local/bin/docker
     sudo chmod +x /usr/local/bin/docker
+
+NOTE: You might want to check whether v0.3.1 is the latest version by visiting the [Docker Machine releases page](https://github.com/docker/machine/releases)
+
 
 ### Verify Install ##
 
@@ -102,11 +106,10 @@ Now you can look a tthe machine status with:
 ### Open Ports on cloud hosted Docker Machines ###
 
 It is necessary to open the appropriate ports on your Docker hosts to allow 
-access to the applications. At a minimum you need to open the following ports
-for the ASP.Net application:
+access to the applications:
 
-    - port 80 for the webapp on the staging machine
-    - port 8080 for the REST API on the staging machine
+    - port 80:80for the webapp on the staging machine
+    - [optional] port 8080:8080 for the REST API on the staging machine
 
 ## Running the Application ##
 
