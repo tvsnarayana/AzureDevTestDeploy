@@ -21,3 +21,6 @@ case "$STAGE_MACHINE_TYPE" in
   *) echo "ERROR: Cannot create machine of type $STAGE_MACHINE_TYPE"
      ;;
 esac
+
+echo "Unless an error is reported above your VM is now ready to use"
+echo "Remember, you will need to open appropriate endpoints on your VM if you want to access Docker containers from elsewhere"
