@@ -3,7 +3,7 @@
     <title>Hello World!</title>
   </head>
   <body>
-    <h1>Hello for the PHP Web application</h1>
+    <h1>Hello from the PHP Web application</h1>
     <?php 
        $service_url = 'http://rest:8080/JerseyHelloWorld/rest/helloworld';
        $curl = curl_init($service_url);
