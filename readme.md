@@ -41,11 +41,9 @@ staging server.
 
 This is about as simple as a web application gets. 
 
-Originally this part of the application was a ASP.Net
-application. However, we found that this was making things difficult
-for people coming from a non ASP background. So we replaced it with a
-much simpler PHP application. Things are essentially the same, it's
-just a different programming language.
+This is a simple PHP application. That makes a call to the REST API
+(see below) and provides a response. We start two instances of this
+application and use a HAProxy load balancer to handle requests.
 
 # Java Hello REST API #
 
