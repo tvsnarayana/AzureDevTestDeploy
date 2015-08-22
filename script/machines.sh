@@ -12,7 +12,7 @@ docker-machine create -d $DEV_MACHINE_TYPE $DEV_MACHINE_NAME
 docker-machine env $DEV_MACHINE_NAME
 
 echo "##########################################################################################"
-echo "Creating "$STAGE_MACHINE_TYPE" machine for development with name $STAGE_MACHINE_NAME"
+echo "Creating "$STAGE_MACHINE_TYPE" machine for staging with name $STAGE_MACHINE_NAME"
 echo "##########################################################################################"
 
 case "$STAGE_MACHINE_TYPE" in
