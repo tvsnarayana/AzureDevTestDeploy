@@ -10,7 +10,7 @@
 source script/config.sh
 
 echo "Staging load testing version on $STAGE_MACHINE_NAME"
-eval "$(docker-machine env $STAGE_MACHINE_NAME)"
+docker info
 
 cd loadTest
 

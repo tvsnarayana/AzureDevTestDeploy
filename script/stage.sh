@@ -7,21 +7,37 @@
 # machine that this script is running on.
 ####################################################################
 
+source script/config.sh
+
+case "$STAGE_MACHINE_TYPE" in
+    azure)
+        eval "$(docker-machine env $STAGE_MACHINE_NAME)"
+        ;;
+    swarm-azure)
+        eval "$(docker-machine env --swarm $STAGE_MACHINE_NAME)"
+        ;;
+    *)
+        echo "ERROR: Do not recognize Stage machine of type $STAGE_MACHINE_TYPE"
+        ;;
+esac
+
+docker info
+    
 echo '####################################################################'
 echo '# Build and Stage Java REST API'
 echo '####################################################################'
 
-script/stage_java.sh
+source script/stage_java.sh
 
 echo '####################################################################'
 echo '# Build and Stage Web Application'
 echo '####################################################################'
 
-script/stage_web.sh
+source script/stage_web.sh
 
 echo '####################################################################'
 echo '# Build and Stage Load Testing Container'
 echo '####################################################################'
 
-script/stage_load.sh
+source script/stage_load.sh
 
