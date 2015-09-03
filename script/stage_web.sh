@@ -10,6 +10,7 @@
 source script/config.sh
 
 echo "Staging web client application version $WEB_STAGE_VERSION on $STAGE_MACHINE_NAME"
+eval "$(docker-machine env $STAGE_MACHINE_NAME)"
 docker info
 
 cd web
