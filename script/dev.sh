@@ -7,7 +7,7 @@
 # machine that this script is running on.
 ####################################################################
 
-source script/config.sh
+source ./config.sh
 
 echo '####################################################################'
 echo '# Build and Run Java REST API on the Dev machine ($DEV_MACHINE_NAME)'
@@ -30,9 +30,6 @@ script/dev_load.sh
 echo '####################################################################'
 echo '# View the results of the load testing with "docker logs dev_load"'
 echo '####################################################################'
-
-echo ''
-echo ''
 
 echo '####################################################################'
 echo '# If all went well you can now visit your application'
