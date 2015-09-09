@@ -24,7 +24,7 @@ https://www.virtualbox.org/wiki/Download_Old_Builds_4_3
 ## Configure.sh ##
 
 The helper scripts provided are configured in scripts/config.sh. You will
-need to screate this file. We provide a template file to get you started
+need to create this file. We provide a template file to get you started
 with good defaults where we can. Start by copying the template:
 
     $ cp script/config.tmpl config.sh
@@ -32,7 +32,7 @@ with good defaults where we can. Start by copying the template:
 Now edit this file, being sure to change (at least) the
 STAGING_MACHINE_NAME which must be world unique.
 
-## Install Docker and Docker Machine ##
+## Install Docker, Docker Machine and Docker Compose
 
 We will use Docker Machine to create our Docker Hosts. You will then
 use the Docker command to manage containers on those hosts. The
@@ -57,8 +57,13 @@ In a shell type:
     sudo chmod +x /usr/local/bin/docker-machine
     sudo wget https://get.docker.com/builds/Linux/x86_64/docker-latest -O /usr/local/bin/docker
     sudo chmod +x /usr/local/bin/docker
+    curl -L https://github.com/docker/compose/releases/download/1.4.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 
-NOTE: You might want to check whether v0.3.1 is the latest version by visiting the [Docker Machine releases page](https://github.com/docker/machine/releases)
+
+If you
+
+
+NOTE: You might want to check whether v0.3.1 is the latest version of Machine by visiting the [Docker Machine releases page](https://github.com/docker/machine/releases). You should also check that 1.4.0 is the latest version of Docker Compose by visiting the [Docker Compose release page](https://github.com/docker/compose/releases).
 
 
 ### Verify Install ##
@@ -66,8 +71,9 @@ NOTE: You might want to check whether v0.3.1 is the latest version by visiting t
 You should now be able to run the following commands and see the
 appropriate version numbers.
 
-    docker-machine --version
     docker --version
+    docker-machine --version
+    docker-compose --version
 
 ### Configure Docker Machine for Azure##
 
