@@ -3,9 +3,8 @@ web:
   ports:
     - "80:80"
   links:
-    - stage_rest
+    - stage_rest:rest
 stage_rest:
   build: java
   ports:
     - "8080:8080"
-
