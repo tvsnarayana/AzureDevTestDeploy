@@ -23,10 +23,24 @@ as installing docker clients and creating host machines on which to
 deploy your containers. Take a look at the file environmentSetup.md
 and come back here when you are done.
 
-# Scripts #
+# Running the Application
+
+The application is best run with Docker Compose:
+
+```bash
+docker-compose up -d
+```
+
+You can scale the web application up or down too:
+
+```bash
+docker-compose scale web=3
+```
+
+## Scripts 
 
 The /script directory contains a number of helper scripts for managing
-our build and development environments.
+our build and development environments. Generally for starting up the application you should use Docker-Compose, the scripts in this directory are deprecated.
 
 Copy /scripts/config.tmpl to scripts/config.sh before using these
 scripts. You might want to edit scripts/config.sh, see the file for
@@ -37,7 +51,11 @@ start, the first will deploy and load test the application on your dev
 host while the second will deploy and load test the application on the
 staging server.
 
-# Web Application: Hello Web #
+# Load Balancer
+
+We use an HA Proxy load balancer which dynamically discovers instances of the web application running on the same host.
+
+# Web Application: Hello Web 
 
 This is about as simple as a web application gets. 
 

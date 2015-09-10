@@ -1,10 +1,15 @@
-web:
-  build: web
+lb:
+  image: eeacms/haproxy
   ports:
     - "80:80"
+    - "1936:1936"
   links:
-    - stage_rest:rest
-stage_rest:
+    - web
+web:
+  build: web
+  links:
+    - rest
+rest:
   build: java
   ports:
     - "8080:8080"
