@@ -20,3 +20,4 @@ emacs-config.el
 
 # Vi Files
 *.swp
+*.swo
