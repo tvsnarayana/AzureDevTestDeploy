@@ -5,11 +5,14 @@ lb:
     - "1936:1936"
   links:
     - web
+  restart: always
 web:
   build: web
   links:
     - rest
+  restart: always
 rest:
   build: java
   ports:
     - "8080:8080"
+  restart: always
