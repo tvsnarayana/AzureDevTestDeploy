@@ -23,6 +23,6 @@ docker stop dev_web
 echo "Removing any previous dev container web app"
 docker rm dev_web
 echo "Running a web app dev container"
-docker run -td -v $(pwd)/www/:/var/www -p $DEV_WEBAPP_PORT:80 --link dev_rest:rest --name=dev_web web:latest
+docker run -d -v $(pwd)/www/:/var/www -p $DEV_WEBAPP_PORT:80 --link dev_rest:rest --name=dev_web web:latest
 
 cd ..
