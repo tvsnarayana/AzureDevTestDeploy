@@ -40,7 +40,11 @@ docker-compose scale web=3
 ## Scripts 
 
 The /script directory contains a number of helper scripts for managing
-our build and development environments. Generally for starting up the application you should use Docker-Compose, the scripts in this directory are deprecated.
+our build and development environments. Generally for starting up the 
+application you should use Docker-Compose, the scripts in this 
+directory are deprecated, there are, however, still useful for people 
+learning about Docker and how it works because Docker Compose hides 
+some details whereas the scripts show exactly what is happening.
 
 Copy /scripts/config.tmpl to scripts/config.sh before using these
 scripts. You might want to edit scripts/config.sh, see the file for
