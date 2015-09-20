@@ -12,10 +12,10 @@ source script/config.sh
 echo "Staging load testing version on $DEV_MACHINE_NAME"
 eval "$(docker-machine env $DEV_MACHINE_NAME)"
 
-cd loadTest
+cd load_test
 
 # Build the container to ensure we pick up any changes
-docker build -t loadtest .
+docker build -t load_test .
 
 # Stop, remove and restart the container
 echo "Stopping any running (staged) load testing container"
@@ -23,6 +23,6 @@ docker stop dev_load
 echo "Removing any previously (staged) load testing container"
 docker rm dev_load
 echo "Running a load testing container"
-docker run -t -d --link dev_web:web --name=dev_load loadtest
+docker run -t -d --link dev_web:web --name=dev_load load_test
 
 cd ..
