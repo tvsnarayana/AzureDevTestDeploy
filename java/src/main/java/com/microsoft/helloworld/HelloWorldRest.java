@@ -10,6 +10,8 @@ import javax.ws.rs.core.MediaType;
 @Path("helloworld")
 public class HelloWorldRest {
 
+    static int count = 0;
+
     /**
      * Method handling HTTP GET requests. The returned object will be sent to
      * the client as "text/plain" media type.
@@ -19,6 +21,8 @@ public class HelloWorldRest {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String ping() {
+        count = count + 1;
+
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss zzzz");
         String formattedDate = formatter.format(new Date());
         
@@ -30,6 +34,9 @@ public class HelloWorldRest {
 	    hostname = "Unknown";
 	}
 		
-      	return "Hello from the Java API (host " + hostname + "), it's now " + formattedDate;
+        String response = "<p>REST hostname is " + hostname + "</p>";
+	response = response +"<p>Time: " + formattedDate + "</p>";
+	response = response + "<p>Requests: " + count + "</p>";
+	return response;
     }
 }

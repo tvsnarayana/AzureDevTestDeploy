@@ -18,6 +18,7 @@
 
        curl_close($curl);
     ?>
-    <p>The Java REST API says: "<?php echo $curl_response ?>"</p>
+    <h1>Rest API Response</h1>
+    <?php echo $curl_response ?>
   </body>
 </html>
