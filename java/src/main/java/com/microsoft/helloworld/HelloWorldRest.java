@@ -21,6 +21,15 @@ public class HelloWorldRest {
     public String ping() {
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss zzzz");
         String formattedDate = formatter.format(new Date());
-      	return "Hello from your Dockerized API App (written in Java), it's now " + formattedDate;
+        
+ 	String hostname = "";
+	try {
+            java.net.InetAddress addr = java.net.InetAddress.getLocalHost();
+           hostname = addr.getHostName();
+        } catch (java.net.UnknownHostException e) {
+	    hostname = "Unknown";
+	}
+		
+      	return "Hello from the Java API (host " + hostname + "), it's now " + formattedDate;
     }
 }
