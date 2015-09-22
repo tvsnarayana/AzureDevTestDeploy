@@ -1,0 +1,74 @@
+{
+  "id": "azure",
+  "groups": [
+    {
+      "apps": [
+        {
+          "id": "web",
+          "cpus": 0.5,
+          "mem": 500,
+          "instances": 1,
+          "ports": [
+            80
+          ],
+          "requirePorts": true,
+          "container": {
+            "docker": {
+              "image": "jsancio/web:latest",
+              "network": "HOST"
+            },
+            "type": "DOCKER"
+          }
+        },
+        {
+          "id": "rest",
+          "cpus": 0.5,
+          "mem": 500,
+          "instances": 1,
+          "ports": [
+            8080
+          ],
+          "requirePorts": true,
+          "container": {
+            "docker": {
+              "image": "jsancio/rest:latest",
+              "network": "HOST"
+            },
+            "type": "DOCKER"
+          }
+        },
+        {
+          "id": "load_test",
+          "cpus": 0.5,
+          "mem": 500,
+          "instances": 1,
+          "container": {
+            "docker": {
+              "image": "jsancio/load_test:latest",
+              "network": "HOST"
+            },
+            "type": "DOCKER"
+          }
+        },
+        {
+          "id": "lb",
+          "cpus": 0.5,
+          "mem": 500,
+          "instances": 1,
+          "ports": [
+            80
+          ],
+          "requirePorts": true,
+          "container": {
+            "docker": {
+              "image": "eeacms/haproxy",
+              "network": "HOST"
+            },
+            "type": "DOCKER"
+          }
+        }
+      ],
+      "id": "demo"
+    }
+  ]
+}

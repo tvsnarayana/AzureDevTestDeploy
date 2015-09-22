@@ -6,7 +6,7 @@
     <h1>Hello from the PHP Web application</h1>
     <p>Host: <?php echo gethostname() ?>
     <?php 
-       $service_url = 'http://rest:8080/JerseyHelloWorld/rest/helloworld';
+       $service_url = 'http://rest-demo-azure.marathon.mesos:8080/JerseyHelloWorld/rest/helloworld';
        $curl = curl_init($service_url);
        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
        $curl_response = curl_exec($curl);
