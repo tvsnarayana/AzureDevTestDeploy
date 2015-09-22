@@ -18,7 +18,10 @@
               "network": "HOST"
             },
             "type": "DOCKER"
-          }
+          },
+          "dependencies": [
+            "/azure/demo/rest"
+          ]
         },
         {
           "id": "rest",
@@ -38,7 +41,7 @@
           }
         },
         {
-          "id": "load_test",
+          "id": "load-test",
           "cpus": 0.5,
           "mem": 500,
           "instances": 1,
@@ -48,7 +51,10 @@
               "network": "HOST"
             },
             "type": "DOCKER"
-          }
+          },
+          "dependencies": [
+            "/azure/demo/lb"
+          ]
         },
         {
           "id": "lb",
@@ -58,6 +64,9 @@
           "ports": [
             80
           ],
+          "env": {
+            "BACKENDS": "web-demo-azure.marathon.mesos:80"
+          },
           "requirePorts": true,
           "container": {
             "docker": {
@@ -65,7 +74,10 @@
               "network": "HOST"
             },
             "type": "DOCKER"
-          }
+          },
+          "dependencies": [
+            "/azure/demo/web"
+          ]
         }
       ],
       "id": "demo"
