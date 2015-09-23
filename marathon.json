@@ -14,7 +14,7 @@
           "requirePorts": true,
           "container": {
             "docker": {
-              "image": "jsancio/web:latest",
+              "image": "azuredemo/web:azurecon",
               "network": "HOST"
             },
             "type": "DOCKER"
@@ -34,7 +34,7 @@
           "requirePorts": true,
           "container": {
             "docker": {
-              "image": "jsancio/rest:latest",
+              "image": "azuredemo/rest:azurecon",
               "network": "HOST"
             },
             "type": "DOCKER"
@@ -47,7 +47,7 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "jsancio/load_test:latest",
+              "image": "azuredemo/load_test:azurecon",
               "network": "HOST"
             },
             "type": "DOCKER"
