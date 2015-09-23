@@ -15,6 +15,8 @@ function log() {
   printf "LOG:\t$timestamp\t$1\n"
 }
 
+log "Starting tests"
+
 log "Response time from /index.php meets SLA with 100 concurrent users"
 sleep 10s
 
@@ -25,3 +27,6 @@ warn "Response time from /index.php borderling SLA with 500 concurrent users"
 sleep 17s
 
 error "Response time from /index.php below SLA with 1000 concurrent users"
+
+sleep 500
+log "Tests completed"
