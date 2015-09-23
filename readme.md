@@ -25,6 +25,16 @@ and come back here when you are done.
 
 # Running the Application
 
+## Marathon
+
+curl -X POST http://your_master:8080/v2/groups -d @marathon.json -H "Content-type: application/json"
+
+## Docker Compose
+
+FIXME: At the time of writing we have a hack in place while we make
+Marathon work. Docker compose does not work at this time, use the 
+master branch if you need Docker Compose.
+
 The application is best run with Docker Compose:
 
 ```bash
