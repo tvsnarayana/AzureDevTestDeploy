@@ -25,7 +25,7 @@
         },
         {
           "id": "rest",
-          "cpus": 0.5,
+          "cpus": 1.0,
           "mem": 500,
           "instances": 1,
           "ports": [
@@ -39,22 +39,6 @@
             },
             "type": "DOCKER"
           }
-        },
-        {
-          "id": "load-test",
-          "cpus": 0.5,
-          "mem": 500,
-          "instances": 1,
-          "container": {
-            "docker": {
-              "image": "azuredemo/load_test:azurecon",
-              "network": "HOST"
-            },
-            "type": "DOCKER"
-          },
-          "dependencies": [
-            "/azure/demo/lb"
-          ]
         },
         {
           "id": "lb",
