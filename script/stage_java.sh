@@ -10,7 +10,7 @@
 source script/config.sh
 
 echo "Staging Java application version $REST_STAGE_VERSION on $STAGE_MACHINE_NAME"
-eval "$(docker-machine env $STAGE_MACHINE_NAME)"
+docker info
 
 cd java
 

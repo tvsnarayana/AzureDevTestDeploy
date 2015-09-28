@@ -4,6 +4,7 @@
   </head>
   <body>
     <h1>Hello from the PHP Web application</h1>
+    <p>Host: <?php echo gethostname() ?>
     <?php 
        $service_url = 'http://rest:8080/JerseyHelloWorld/rest/helloworld';
        $curl = curl_init($service_url);
@@ -17,6 +18,7 @@
 
        curl_close($curl);
     ?>
-    <p>The Java REST API says: "<?php echo $curl_response ?>"</p>
+    <h1>Rest API Response</h1>
+    <?php echo $curl_response ?>
   </body>
 </html>

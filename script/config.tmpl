@@ -5,8 +5,10 @@
 # 
 
 # Machine Types Machines define the driver that docker machine will
-# use to create the machine. Values are any supported values for the
-# -d option for the docker-machine command.
+# use to create the machine. Allowed values are:
+# hyper-v for Windows Hyper-V VM
+# azure for Microsoft Azure
+# swarm-azure for a Swarm cluster on Azure
 DEV_MACHINE_TYPE=hyper-v
 STAGE_MACHINE_TYPE=azure
 
@@ -30,3 +32,8 @@ REST_STAGE_VERSION=0.1.0
 AZURE_SUBSCRIPTION_ID=FIXME: get this from the Azure portal
 AZURE_LOCATION="Central US"
 AZURE_CERT_NAME=mycert.pem
+
+# Docker Swarm Config
+# Note SWARM_ID will automatically be set when you create the swarm using
+# machines.sh with a STAGE_MACHINE_TYPE of swarm-azure
+SWARM_ID=Will be replaced with SWARM_ID when available
