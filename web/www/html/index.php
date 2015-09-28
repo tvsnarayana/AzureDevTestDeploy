@@ -3,6 +3,7 @@
     <title>Hello World!</title>
   </head>
   <body>
+    <img src="image/Container-255x115.png" alt="Azure Container Service Logo" style="float:right"/>
     <h1>Hello from the PHP Web application</h1>
     <p>Host: <?php echo gethostname() ?>
     <?php 
