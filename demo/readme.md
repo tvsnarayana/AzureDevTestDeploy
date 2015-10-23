@@ -1,5 +1,7 @@
 Here you will find a number of demo's for this test application. Each demo is intended to be self contained and builds on the previous demo's. The folder for each demo has the same structure.
 
+Once you have your machine set up to run the demo's (see Requirements for Running Demo's below) you can prepare your environment by running the `prepare.sh` from the chosen demo directory. The readme.md file will describe the demo script.
+
 # Requirements for Running the Demo's
 
 These demo's are designed to run on Linux. The Docker aspects should work on Mac and Windows, but some aspects of the prepare script may not work on those platforms because of missing dependencies.
