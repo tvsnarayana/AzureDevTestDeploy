@@ -1,7 +1,7 @@
-FROM alteroo/funkload
+FROM mblouin/ab_gnuplot
 
 COPY ./tests /tests
 WORKDIR /tests
 
-CMD ["fl-run-bench", "test_Basic.py", "Basic.test_basic"]
+CMD ["bash", "loadtest.sh"]
 
