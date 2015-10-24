@@ -1,6 +1,6 @@
 # Objectives
 
-1. Descrive the objectives in bullets here
+1. Describe the objectives in bullets here
 2. This readme file will become a presentation
 
 ---
