@@ -15,12 +15,6 @@ web:
     - rest
   volumes:
     - ./web/prefork.conf:/etc/apache2/conf-enabled/prefork.conf
-ci:
-  build: ci
-  ports:
-    - "8888:8888"
-  volumes:
-    - ./ci/www:/var/www
 rest:
   build: java
   ports:
@@ -30,4 +24,4 @@ load_test:
   links:
     - lb:web
   volumes:
-    - ./ci/www/html:/var/www
+    - ./load_test/tests:/tests
