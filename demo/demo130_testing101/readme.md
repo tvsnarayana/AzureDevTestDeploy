@@ -14,7 +14,9 @@
     * Rest application
     * Load Balancer (for Web application)
     * Load Test
-  * Load Test is the one we are interested in
+    * Integration Test
+  * The TMux session will have two windows available, one showing test results
+  * Load Test and Integration Test are the ones we are interested in
 
 ---
 
