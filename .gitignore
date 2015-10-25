@@ -5,6 +5,7 @@ load_test/tests/test_results.txt
 load_test/tests/ab_results.txt
 load_test/tests/benchmark.tsv
 load_test/tests/load_test_in_progress
+ci/jenkins/jenkins_home.bak
 
 # Emacs files
 auto-save-list
