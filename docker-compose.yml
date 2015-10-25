@@ -22,4 +22,7 @@ load_test:
   build: load_test
   links:
     - lb:web
-
+integration_test:
+  build: integration_test
+  links:
+    - web
