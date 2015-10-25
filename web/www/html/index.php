@@ -7,17 +7,8 @@
     <h1>Hello from the PHP Web application</h1>
     <p>Host: <?php echo gethostname() ?>
     <?php
-
-	usleep(40000);
-
-       function fibonacci($n) {
-         if ($n === 0) return 0;
-	 if ($n === 1) return 1;
-
-	 return fibonacci($n - 1) + fibonacci($n - 2);
-       }
-
-       //fibonacci(23);
+       // Sleep to make the script take enough time to fail the test.
+       usleep(40000);
 
        $service_url = 'http://rest:8080/JerseyHelloWorld/rest/helloworld';
        $curl = curl_init($service_url);
