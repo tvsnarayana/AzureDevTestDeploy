@@ -6,6 +6,7 @@ web:
     - rest
   volumes:
     - ./web/prefork.conf:/etc/apache2/conf-enabled/prefork.conf
+    - ./web/www:/var/www
 rest:
   build: java
   ports:
@@ -21,5 +22,4 @@ load_test:
   build: load_test
   links:
     - lb:web
-  volumes:
-    - ./ci/www/html:/var/www
+
