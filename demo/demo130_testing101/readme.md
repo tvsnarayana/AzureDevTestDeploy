@@ -42,9 +42,8 @@
 
 # Breaking the integration test
 
-  * Edit index.php
-  * Change the text "REST hostname is"
-  * `docker-compose build`
+  * Edit tests/test_test.sh
+  * Change the text "<p>REST hostname is .+</p>"
   * `docker-compose up -d`
   * `docker logs azuredevtestdeploy_integration_test_1`
 
