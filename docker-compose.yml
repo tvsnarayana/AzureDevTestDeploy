@@ -1,12 +1,10 @@
 lb:
-  image: mblouin/eea.docker.haproxy
+  image: eeacms/haproxy
   ports:
     - "80:80"
     - "1936:1936"
   links:
     - web
-  environment:
-    - SERVICE_NAMES=azuredevtestdeploy_web
 web:
   build: web
   ports:
@@ -15,12 +13,6 @@ web:
     - rest
   volumes:
     - ./web/prefork.conf:/etc/apache2/conf-enabled/prefork.conf
-ci:
-  build: ci
-  ports:
-    - "8888:8888"
-  volumes:
-    - ./ci/www:/var/www
 rest:
   build: java
   ports:
