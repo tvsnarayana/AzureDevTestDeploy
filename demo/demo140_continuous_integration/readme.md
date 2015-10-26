@@ -7,19 +7,13 @@
 # Starting the demo
 
   * `sudo ./demo/demo140_continuos_integration/prepare.sh`
-  * On startup we will have a number of containers
-    * Web application
-    * Rest application
-    * Load Balancer (for Web application)
-    * Load Test
-    * Integration Test
+  * On startup we will have a single container running
     * Jenkins
-  * The TMux session will have two windows available, one showing test results
-  * The Jenkins container is the one we are interested in
+  * This will monitor Git for changes and run tests when necessary
 
 ---
 
-# Viwe the Jenkins instance
+# View the Jenkins instance
 
 ```
 http://YOURHOST:8081
@@ -28,3 +22,6 @@ http://YOURHOST:8081
 ---
 
 # Trigger a build
+
+  * Either commit and wait for up to 5 mins
+  * Or, manual trigger a build in the UI
