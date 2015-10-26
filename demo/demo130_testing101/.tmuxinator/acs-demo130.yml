@@ -32,7 +32,7 @@ windows:
       layout: main-horizontal
       panes:
         - history -r demo/demo1_working_with_containers/commands.txt; clear
-        - watch -n 0.5 "docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t {{.Ports}}             '"
+        - watch -n 0.5 "docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t {{.Ports}}'"
   - test:
       layout: main-horizontal
       panes:
