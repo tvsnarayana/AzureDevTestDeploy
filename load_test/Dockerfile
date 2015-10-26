@@ -1,4 +1,4 @@
-FROM mblouin/ab_gnuplot
+FROM jordi/ab 
 
 VOLUME /var/www
 
