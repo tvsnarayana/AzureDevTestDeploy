@@ -5,7 +5,6 @@ web:
   links:
     - rest
   volumes:
-    - ./web/prefork.conf:/etc/apache2/conf-enabled/prefork.conf
     - ./web/www:/var/www
 rest:
   build: java
