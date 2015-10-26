@@ -7,6 +7,9 @@
     <h1>Hello from the PHP Web application</h1>
     <p>Host: <?php echo gethostname() ?>
     <?php
+       // Sleep to make the script take enough time to fail the CI test.
+       // usleep(40000);
+
        $service_url = 'http://rest:8080/JerseyHelloWorld/rest/helloworld';
        $curl = curl_init($service_url);
        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
