@@ -16,9 +16,6 @@ export DOCKER_HOME=
 export DOCKER=
 
 # Prepare Docker
-docker stop $(docker ps -aq)
-docker rm $(docker ps -qa) 
-docker rmi $(docker images -q)
 
 # Create tmux session
 tmux kill-session -t $DEMO_NAME
