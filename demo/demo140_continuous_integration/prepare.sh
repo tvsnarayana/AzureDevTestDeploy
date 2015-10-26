@@ -20,6 +20,8 @@ cd ci
 docker-compose stop
 
 # Start Docker containers
+docker stop $(docker ps -q)
+
 cd ci
 docker-compose up -d
 
