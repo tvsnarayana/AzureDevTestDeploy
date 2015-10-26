@@ -4,6 +4,9 @@ web:
     - "80"
   links:
     - rest
+  volumes:
+    - ./web/prefork.conf:/etc/apache2/conf-enabled/prefork.conf
+    - ./web/www:/var/www
 rest:
   build: java
   ports:
@@ -23,4 +26,5 @@ integration_test:
   build: integration_test
   links:
     - web
-
+  volumes: 
+    - ./integration_test/tests:/tests
