@@ -1,6 +1,6 @@
 # ~/.tmuxinator/azurecon-demo1.yml
 
-name: azurecon-demo1
+name: acs-demo130
 root: ~/projects/AzureDevTestDeploy
 
 # Optional tmux socket
@@ -33,3 +33,8 @@ windows:
       panes:
         - history -r demo/demo1_working_with_containers/commands.txt; clear
         - watch -n 0.5 "docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t {{.Ports}} {{.Command}}'"
+  - test:
+      layout: main-horizontal
+      panes:
+        - watch 'docker logs azuredevtestdeploy_integration_test_1 2> /dev/null'
+        - watch 'docker logs azuredevtestdeploy_load_test_1 2> /dev/null | tac | grep -o -m 3 "^Requests per second .+ (mean)$"'

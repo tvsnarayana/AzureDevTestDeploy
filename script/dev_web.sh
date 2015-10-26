@@ -1,3 +1,5 @@
+#!/bin/sh
+
 ###########################################
 # Build and run the web application.
 #
@@ -7,7 +9,11 @@
 # machine that this script is running on.
 ###########################################
 
-source script/config.sh
+SCRIPT_PATH=$(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")
+SCRIPT_HOME=$(dirname $SCRIPT_PATH)
+
+echo "source $SCRIPT_HOME/config.sh"
+. $SCRIPT_HOME/config.sh
 
 eval "$(docker-machine env $DEV_MACHINE_NAME)"
 docker-machine env $DEV_MACHINE_NAME

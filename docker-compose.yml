@@ -1,3 +1,16 @@
+web:
+  build: web
+  ports:
+    - "80"
+  links:
+    - rest
+  volumes:
+    - ./web/prefork.conf:/etc/apache2/conf-enabled/prefork.conf
+    - ./web/www:/var/www
+rest:
+  build: java
+  ports:
+    - "8080:8080"
 lb:
   image: eeacms/haproxy
   ports:
@@ -5,17 +18,13 @@ lb:
     - "1936:1936"
   links:
     - web
-web:
-  build: web
-  ports:
-    - "80"
-  links:
-    - rest
-rest:
-  build: java
-  ports:
-    - "8080:8080"
 load_test:
   build: load_test
   links:
+    - lb:web
+integration_test:
+  build: integration_test
+  links:
     - web
+  volumes: 
+    - ./integration_test/tests:/tests
