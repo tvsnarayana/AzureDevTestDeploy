@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Demo parameters
-DEMO_NAME=acs-demo130
+DEMO_NAME=acs-demo140
 
 # Demo script location
 SCRIPT_PATH=$(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")
@@ -16,13 +16,15 @@ export DOCKER_HOME=
 export DOCKER=
 
 # Prepare Docker
-docker-compose -f docker-compose-dev.yml stop
-docker stop $(docker ps -aq)
-docker rm $(docker ps -qa) 
+cd ci
+docker-compose stop
 
 # Start Docker containers
-docker-compose -f docker-compose-dev.yml up -d
+docker stop $(docker ps -q)
+
+cd ci
+docker-compose up -d
 
 # Create tmux session
-tmux kill-session -t $DEMO_NAME
-mux $DEMO_NAME
+#tmux kill-session -t $DEMO_NAME
+#mux $DEMO_NAME

@@ -1,6 +1,6 @@
 # ~/.tmuxinator/azurecon-demo1.yml
 
-name: acs-demo130
+name: acs-demo140
 root: ~/projects/AzureDevTestDeploy
 
 # Optional tmux socket
@@ -37,4 +37,4 @@ windows:
       layout: main-horizontal
       panes:
         - watch 'docker logs azuredevtestdeploy_integration_test_1 2> /dev/null'
-        - watch 'docker logs azuredevtestdeploy_load_test_1 2> /dev/null | tac | grep -o -m 3 "^Requests per second.* (mean)$"'
+        - watch 'docker logs azuredevtestdeploy_load_test_1 2> /dev/null | tac | grep -o -m 3 "^Requests per second.*$"'
