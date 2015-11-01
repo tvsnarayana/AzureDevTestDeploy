@@ -12,7 +12,7 @@ mkdir ~/.tmuxinator
 cp $DEMO_HOME/.tmuxinator/* ~/.tmuxinator
 
 # Configure Docker
-export DOCKER_HOME=
+export DOCKER_HOST=
 export DOCKER=
 
 # Prepare Docker
