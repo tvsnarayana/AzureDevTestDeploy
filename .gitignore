@@ -1,11 +1,26 @@
 mycert.*
+
+# Java noise
 java/target/*
+
+# Script files
 script/config.sh
+
+# Load test project files
 load_test/tests/test_results.txt
 load_test/tests/ab_results.txt
 load_test/tests/benchmark.tsv
 load_test/tests/load_test_in_progress
+
+# CI Project Files
 ci/jenkins/jenkins_home.bak
+ci/jenkins/jenkins_home/*
+ci/jenkins/jenkins_home/jobs/*/builds
+ci/jenkins/jenkins_home/jobs/*/lastSuccessful
+ci/jenkins/jenkins_home/jobs/*/nextBuildNumber
+ci/jenkins/jenkins_home/jobs/*/lastStable
+ci/jenkins/jenkins_home/jobs/*/promotions
+!ci/jenkins/jenkins_home/jobs
 
 # Emacs files
 auto-save-list
