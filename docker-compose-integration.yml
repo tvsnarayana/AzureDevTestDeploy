@@ -17,3 +17,13 @@ lb:
     - "1936:1936"
   links:
     - web
+load_test:
+  build: load_test
+  links:
+    - lb:web
+integration_test:
+  build: integration_test
+  links:
+    - web
+  volumes: 
+    - ./integration_test/tests:/tests
