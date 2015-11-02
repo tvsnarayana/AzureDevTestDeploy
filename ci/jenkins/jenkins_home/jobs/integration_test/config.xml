@@ -3,7 +3,13 @@
   <actions/>
   <description>Run integration tests whenever any Git branch is changed. </description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.21">
+      <activeProcessNames>
+        <string>Publish Containers</string>
+      </activeProcessNames>
+    </hudson.plugins.promoted__builds.JobPropertyImpl>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
