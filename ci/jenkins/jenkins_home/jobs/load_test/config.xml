@@ -61,8 +61,8 @@ docker-compose -f docker-compose-integration.yml -p ${NAME} run load_test
           <EscalateStatus>false</EscalateStatus>
           <RunIfJobSuccessful>false</RunIfJobSuccessful>
           <script>NAME=&quot;jenkins${JOB_NAME}${BUILD_NUMBER}&quot;&#xd;
-docker-compose -p ${NAME} stop 1&gt;/dev/null&#xd;
-docker-compose -p ${NAME} rm -f 1&gt;/dev/null</script>
+docker-compose -f docker-compose-integration.yml  -p ${NAME} stop 1&gt;/dev/null&#xd;
+docker-compose -f docker-compose-integration.yml  -p ${NAME} rm -f 1&gt;/dev/null</script>
         </hudson.plugins.postbuildtask.TaskProperties>
       </tasks>
     </hudson.plugins.postbuildtask.PostbuildTask>
