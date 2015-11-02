@@ -95,3 +95,12 @@ as follows:
     * If integration tests pass, load_test is run
     * If load test passes integration_test project is promoted
   * When promoted integration_test will publish the web and rest artifacts to Docker Hub as adtd/web:dev
+
+NOTE: in order for publication to work it is necessary to a) be a
+member of the ADTD team on Docker Hub and b) to login to Docker Hub.
+
+Anyone who has push access to the AzureDevTestDeploy project on GitHub
+will be added to the ADTD team on Docker Hub. Once added you can login
+on the Jenkins server using the following command:
+
+`docker exec ci_jenkins_1 docker login --email="foo@bar.org" --username="foo" --password="bar"`
