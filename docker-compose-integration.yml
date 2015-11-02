@@ -4,8 +4,6 @@ web:
     - "80"
   links:
     - rest
-  volumes:
-    - ./web/www:/var/www
 rest:
   build: java
   ports:
@@ -25,5 +23,3 @@ integration_test:
   build: integration_test
   links:
     - web
-  volumes: 
-    - ./integration_test/tests:/tests
