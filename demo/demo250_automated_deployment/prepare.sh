@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Demo parameters
-DEMO_NAME=FIXME-demo-name
+DEMO_NAME=acs-demo250
 
 # Demo script location
 SCRIPT_PATH=$(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")
@@ -15,7 +15,15 @@ cp $DEMO_HOME/.tmuxinator/* ~/.tmuxinator
 export DOCKER_HOME=
 export DOCKER=
 
-# Prepare Docker
+docker stop $(docker ps -q)
+
+# Bring up the CI system
+cd ci
+docker-compose up -d
+cd ..
+
+# Bring up the demo application
+docker-compose -f docker-compose-dev.yml up -d 
 
 # Create tmux session
 tmux kill-session -t $DEMO_NAME

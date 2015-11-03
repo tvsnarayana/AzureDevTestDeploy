@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Demo parameters
-DEMO_NAME=FIXME-demo-name
+DEMO_NAME=acs-demo201
 
 # Demo script location
 SCRIPT_PATH=$(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")

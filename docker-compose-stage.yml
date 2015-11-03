@@ -1,11 +1,11 @@
 web:
-  image: adtd/web
+  image: adtd/web:stage
   ports:
     - "80"
   links:
     - rest
 rest:
-  image: adtd/rest
+  image: adtd/rest:stage
   ports:
     - "8080:8080"
 lb:

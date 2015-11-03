@@ -1,11 +1,13 @@
 web:
-  image: adtd/web
+  build: web
   ports:
     - "80"
   links:
     - rest
+  volumes:
+    - ./web/www:/var/www
 rest:
-  image: adtd/rest
+  build: java
   ports:
     - "8080:8080"
 lb:
@@ -15,5 +17,3 @@ lb:
     - "1936:1936"
   links:
     - web
-
-

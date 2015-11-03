@@ -1,7 +1,9 @@
-FROM alteroo/funkload
+FROM jordi/ab 
+
+VOLUME /var/www
 
 COPY ./tests /tests
 WORKDIR /tests
 
-CMD ["fl-run-bench", "test_Basic.py", "Basic.test_basic"]
+CMD ["bash", "loadtest.sh"]
 

@@ -1,4 +1,0 @@
-less web/Dockerfile
-docker build -t web web
-./script/dev.sh
-vi web/www/html/index.php

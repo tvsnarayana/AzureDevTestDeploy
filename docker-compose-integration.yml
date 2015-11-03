@@ -1,11 +1,11 @@
 web:
-  image: adtd/web
+  build: web
   ports:
     - "80"
   links:
     - rest
 rest:
-  image: adtd/rest
+  build: java
   ports:
     - "8080:8080"
 lb:
@@ -15,5 +15,11 @@ lb:
     - "1936:1936"
   links:
     - web
-
-
+load_test:
+  build: load_test
+  links:
+    - lb:web
+integration_test:
+  build: integration_test
+  links:
+    - web
