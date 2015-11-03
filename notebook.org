@@ -5,12 +5,12 @@ plans. A lab notebook if you like.
 
 For best results edit in Emacs Org mode.
 
-* TODO Demo150-publish-on-success
+* TODO Demo250 Push to Staging when tests pass
 
 This will be an extension of Demo140. The goal is to push updated
 images to DockerHub (tagged with "dev").
 
-** TODO Push container to Docker Hub
+** DONE Push container to Docker Hub
 
 *** DONE Create Docker Hub Organization called "ADTD"
 
@@ -36,7 +36,7 @@ https://hub.docker.com/u/adtd/dashboard/teams/owners/
 
 
 
-*** TODO Add a push command to Jenkins when tests pass
+*** DONE Add a push command to Jenkins when tests pass
 
 Used the promote build features.
 
@@ -52,6 +52,18 @@ running.
 
 `docker exec ci_jenkins_1 docker login --email="foo@bar.org" --username="foo" --password="bar"`
 
+** TODO Publish app to Marathon from Docker Hub
 * TODO Extract common items from docker-compose files
 
 * TODO Rename "java" to "rest"
+* TODO Remove the need for Marathon/Mesos DNS naming
+
+In order to work with Marathon/Mesos we have to use Mesos DNS which
+requires a Mesos/Marathon specific naming convention. This creates a
+dependency on Marathon/Mesos.
+
+Do what is necessary to revert changes in:
+
+$ git commit -m "Use mesos DNS naming"
+[master f70fbc6] Use mesos DNS naming
+ 2 files changed, 2 insertions(+), 2 deletions(-)
