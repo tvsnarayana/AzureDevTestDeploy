@@ -14,13 +14,31 @@ load_test/tests/load_test_in_progress
 
 # CI Project Files
 ci/jenkins/jenkins_home.bak
-ci/jenkins/jenkins_home/*
+ci/jenkins/jenkins_home/.java/
+ci/jenkins/jenkins_home/hudson.model.UpdateCenter.xml
+ci/jenkins/jenkins_home/hudson.plugins.git.GitTool.xml
+ci/jenkins/jenkins_home/identity.key.enc
+ci/jenkins/jenkins_home/init.groovy.d/
+ci/jenkins/jenkins_home/nodeMonitors.xml
+ci/jenkins/jenkins_home/plugins.txt
+ci/jenkins/jenkins_home/plugins/
+ci/jenkins/jenkins_home/queue.xml.bak
+ci/jenkins/jenkins_home/secret.key
+ci/jenkins/jenkins_home/secret.key.not-so-secret
+ci/jenkins/jenkins_home/secrets/
+ci/jenkins/jenkins_home/updates/
+ci/jenkins/jenkins_home/userContent/
+ci/jenkins/jenkins_home/users/
+ci/jenkins/jenkins_home/war/
+ci/jenkins/jenkins_home/workspace/
 ci/jenkins/jenkins_home/jobs/*/builds
 ci/jenkins/jenkins_home/jobs/*/lastSuccessful
 ci/jenkins/jenkins_home/jobs/*/nextBuildNumber
 ci/jenkins/jenkins_home/jobs/*/lastStable
-ci/jenkins/jenkins_home/jobs/*/promotions
-!ci/jenkins/jenkins_home/jobs
+ci/jenkins/jenkins_home/jobs/*/promotions/*/builds
+ci/jenkins/jenkins_home/jobs/*/promotions/*/lastSuccessful
+ci/jenkins/jenkins_home/jobs/*/promotions/*/nextBuildNumber
+ci/jenkins/jenkins_home/jobs/*/promotions/*/lastStable
 
 # Emacs files
 auto-save-list
