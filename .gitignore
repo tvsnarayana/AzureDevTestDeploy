@@ -13,6 +13,7 @@ load_test/tests/benchmark.tsv
 load_test/tests/load_test_in_progress
 
 # CI Project Files
+ci/jenkins/jenkins_home/.owner
 ci/jenkins/jenkins_home.bak
 ci/jenkins/jenkins_home/.java/
 ci/jenkins/jenkins_home/hudson.model.UpdateCenter.xml
