@@ -3,7 +3,7 @@ web:
   ports:
     - "80"
   links:
-    - rest
+    - rest:rest-demo-azure.marathon.mesos
   volumes:
     - ./web/www:/var/www
 rest:
