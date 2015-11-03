@@ -1,11 +1,11 @@
 web:
-  build: web
+  image: adtd/web
   ports:
     - "80"
   links:
     - rest
 rest:
-  build: java
+  image: adtd/rest
   ports:
     - "8080:8080"
 lb:
