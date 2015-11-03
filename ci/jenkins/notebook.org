@@ -13,7 +13,9 @@ Installed:
 docker-plugin:0.15.0
 docker-build-step:1.32
 
-*** TODO Configur the docker plugins so they work properly
+*** TODO Configure the docker plugins so they work properly
+
+Currently we don't use the Docker plugins for build/run/push steps.
 
 *** TODO Create build steps for each container
 
