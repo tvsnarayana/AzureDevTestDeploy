@@ -53,3 +53,5 @@ running.
 `docker exec ci_jenkins_1 docker login --email="foo@bar.org" --username="foo" --password="bar"`
 
 * TODO Extract common items from docker-compose files
+
+* TODO Rename "java" to "rest"
