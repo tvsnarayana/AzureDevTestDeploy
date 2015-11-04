@@ -26,6 +26,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>curl -X DELETE http://master0:8080/v2/groups/azure?force=true
+sleep 30
 rm marathon.json
 wget https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/marathon/marathon.json
 curl -X POST http://master0:8080/v2/groups -d @marathon.json -H &quot;Content-type:application/json&quot;</command>
