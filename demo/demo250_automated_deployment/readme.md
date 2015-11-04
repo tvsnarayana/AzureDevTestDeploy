@@ -49,18 +49,45 @@ cd AzureDevTestDeploy
 ```
 --    
 
+# CI/CD Machine Configuration
+
+We will use the jumpbox as our CI/CD machine as well. On the jumpbox run the following commands:
+
+```
+git clone https://github.com/rgardler/AzureDevTestDeploy.git
+cd AzureDevTestDeploy/ci
+docker-compose up -d
+docker exec -it ci_jenkins_1 bash
+docker login
+exit
+```
+
+Open a tab on the Jumpbox browser for htpp://localhost:8081
+
+## Details
+
+NOTE: for CI/CD to work you will need push access to the Docker Hub
+organization adtd, raise an issue in GitHub if you need this.
+
+You now have a Jenkins instance running on port 8081 on the Jumpbox
+
+It is configured to detect changes in the source, build the containers, test them, push them to Docker Hub and to publish to our Staging cluster.
+
+[OPTIONAL] you could open port 8081 on the VM and have this publicly accessible
+
+--
+
 # Azure Container Service Cluster
 
 ACS Cluster acts as a place to stage the latest build of the
 application.
 
-Used to verify the build before publication.
+Used to verify the build before pushing to production.
 
   * Prior to ACS preview use our development template
     * https://github.com/anhowe/scratch/tree/master/mesos-marathon
   * After ACS preview use the ACS REsource Provider
     * TODO: Update once ACS private preview is available
-
 --
 
 # ACS Cluster Setup: Jumpbox
@@ -95,32 +122,6 @@ git clone https://github.com/rgardler/linux-config.git
 As a convenience we will be using VNC to connect to the Mesos web UI.
 
 Verify you can see the expected number of Agents (slaves)
-
---
-
-# CI/CD Machine
-
-We will use the jumpbox as our CI/CD machine as well. On the jumpbox run the following commands:
-
-```
-git clone https://github.com/rgardler/AzureDevTestDeploy.git
-cd AzureDevTestDeploy/ci
-docker-compose up -d
-docker exec -it ci_jenkins_1 bash
-docker login
-exit
-```
-
-## Details
-
-NOTE: for CI/CD to work you will need push access to the Docker Hub
-organization adtd, raise an issue in GitHub if you need this.
-
-You now have a Jenkins instance running on port 8081 on the Jumpbox
-
-It is configured to detect changes in the source, build the containers, test them, push them to Docker Hub and to publish to our Staging cluster.
-
-[OPTIONAL] you could open port 8081 on the VM and have this publicly accessible
 
 ---
 
@@ -181,6 +182,17 @@ so others can review it and work with it.
 
 ---
 
+# Demo Stage 2: Dev Vs Production
+
+## Details
+
+This section is really here to fill the 2-3 minutes it takes for the
+applicaiton to be tested and deployed to staging, but it serves a useful purpose too.
+
+Here we will outline the need to manage applications across multiple regions and clusters.
+
+---
+
 # About that Staging Cluster
 
   * Running on the dev machine can only take us so far
@@ -216,6 +228,10 @@ so others can review it and work with it.
 
 ---
 
+Demo Phase 3: A tour of ACS
+
+---
+
 # Tour of ACS
 
   * http://mvpdemo.eastus.cloudapp.azure.com:5050
@@ -229,6 +245,18 @@ so others can review it and work with it.
   * http://mvpdemo.eastus.cloudapp.azure.com
   * See the change we made!
   * What happened here?
+
+---
+
+# Scaling
+
+  * We have a cluster, lets scale up
+  * Use Marathon UI to scale web container to 3
+  * refresh browser, see the PHP HOST changing
+
+---
+
+Demo Phase 4: CI/CD
 
 ---
 
