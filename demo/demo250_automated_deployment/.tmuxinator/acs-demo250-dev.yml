@@ -28,8 +28,12 @@ root: ~/projects/AzureDevTestDeploy
 # post: tmux -CC attach -t azurecon-demo1
 
 windows:
-  - work:
+  - dev:
       layout: main-horizontal
       panes:
-        - export PS1="dev1> "; history -r demo//demo250_automated_deployment/commands.txt; clear
+        - export PS1="dev1> "; history -r demo//demo250_automated_deployment/commands.txt; clear; emacs web/www/html/index.php
         - watch -n 0.5 "docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t {{.Ports}} {{.Command}}'"
+  - acs:
+      layout: main-horizontal
+      panes:
+        - export PS1="acs-stage> "; ssh azureuser@acsmvpdemojump.eastus.cloudapp.azure.com
