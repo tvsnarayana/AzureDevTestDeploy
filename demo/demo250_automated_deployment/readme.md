@@ -39,18 +39,18 @@ This machine is used to show the dev workflow:
 # Dev Machine Configuration
   * Docker
   * Docker Compose
-  * Checkout of this repo
-    * `git clone https://github.com/rgardler/AzureDevTestDeploy.git`
-
---
-
-# Dev Machine Setup
-
   * Open a terminal
     * set to full screen
     * set font to a suitable size for the projector
-  * demo/demo250_automated_deployment/prepare-dev.sh
+  * Run the following commands
 
+```
+git clone https://github.com/rgardler/linux-config.git
+./linux-config/configure.sh
+git clone https://github.com/rgardler/AzureDevTestDeploy.git
+cd AzureDevTestDeploy
+./demo/demo250_automated_deployment/prepare-dev.sh
+```
 --    
 
 # Azure Container Service Cluster
@@ -89,53 +89,66 @@ exit
 
 # Demo Phase 1: Developer Workflow
 
+## Details
+
 In this phase of the demo we see the developer making a change to the
 app, verifying it and pushing it to version control.
 
-## Details
-
-  * 
-
 ---
 
-# View the demo application on the staging cluster
+# The demo application
 
-  * http://STAGING_HOST
-  * A simple PHP web front-end with a Java Backend (REST API)
+  * http://mvpdemo.eastus.cloudapp.azure.com
+  * A simple PHP web front-end
+  * Connects to a Java Backend (REST API)
   * Front end is load balanced
 
+## Details
+
+We are looking at the demo running on the Azure Container Service, but
+we won't focus on that now. We'll come back to it later. For now we
+just want to see it running.
+
+Headings and first hostname is from the PHP applicaiton.
+
+Information below the first heading is from the Java REST API.
+
+There is a load balancer for the web front-end too, but we only have a
+single web container right now so it does nothing.
+
 ---
 
-# Make a change to the application (on the Dev machine)
+# The Application on the Dev Machine
 
-  * `vi web/www/html/index.php`
-    * Edit the first h1
-  * `docker-compose -f docker-compose-dev.yml up -d`
-    * Note how the web container is rebuilt and restarted
   * http://localhost
-  * Looks good, lets push the changes so all devs have them
-    * git commit -am "trigger a build for the MVP demo"
-
----
-
-# Docker brings us easy scaling
-
-  * `docker-compose scale web=3`
-  * http://localhost (a few times)
-  * Look how our load balancer is now working across the three web servers
+  * Make an edit in index.php
+  * Refresh the page
+  * `git commit -am "a simple edit for a live demo"`
 
 ## Details
 
-This slide is not strictly necessary it's really only here to fill
-time while the CI system runs in the background.
+Now we can see the application is running on our local dev machine as
+well.
+
+Switching to the terminal we can see (in the bottom section) the three
+containers running. In the top part of the terminal there is an editor
+with the index.php file open.
+
+We'll make a trivial edit to this file (e.g. change the first h1).
+
+Refreshing the browser we can see the change immediately. This gives
+us a fast development cycle. 
+
+We're happy with the change so we'll commit it to the code repository
+so others can review it and work with it.
 
 ---
 
-# About the Staging Cluster
+# About that Staging Cluster
 
   * Running on the dev machine can only take us so far
-  * Need to run on a staging cluster
-    * Test HA and more
+  * Production environemnt need to be robust and scalable
+  * Staging environments need to be as close as possible to the Prod environemnt
 
 ---
 
@@ -143,36 +156,63 @@ time while the CI system runs in the background.
 
   * A convenient way to create a cluster of Docker Hosts
   * Highliy available
-  * Application Orchestration
+  * Application deployment through Docker
+  * Application orchestration through Apache Mesos
 
 ---
 
-# Deployment options
+# Creating a Cluster
 
   * Portal
-  * ARM
+  * CLI, using ARM
 
 ---
 
 # ACS as a Staging Cluster
 
-  * The default orchestrator
-  * http://YOURCLUSTER:5050
-  * Note how we have the application running in staging already
-    * We'll look at how that happened in a moment
-  * http://STAGING_HOST
-    * See the change we made!
+  * Earlier we saw our application running on Azure
+  * This was on an ACS cluster
+  * We use standard open source tooling
+    * Docker, Compose and Swarm
+    * Marathon and Apache Mesos
+  * Lets take a look at it
 
 ---
 
-# How did that happen?
+# Tour of ACS
+
+  * http://mvpdemo.eastus.cloudapp.azure.com:5050
+  * Number of agents running
+  * The application containers are running
+
+--- 
+
+# Lets take another look at the application on the cluster
+
+  * http://mvpdemo.eastus.cloudapp.azure.com
+  * See the change we made!
+  * What happened here?
+
+---
+
+# CI/CD with Jenkins
 
   * We have a CI/CD server in the cluster
-  * http://YOUR_CI_CD:8081
+    * This is not a standard part of ACS
+    * It's something we built in
+  * http://mvpdemoci.eastus.cloudapp.azure.com:8081
   * It detected changes in GitHub
   * Built and tested the application
   * Published the updated containers to Docker Hub
     * With "stage" tag
   * Instructucted Azure Container Service to update the staged app
 
+---
+
+# Summary
+
+  * Containers provide service portability
+  * Apache Mesos and friends provide orchestration portability
+  * Azure Container Service brings them together with the best cloud
+  * Reaching preview very soon, building out new features all the time
 
