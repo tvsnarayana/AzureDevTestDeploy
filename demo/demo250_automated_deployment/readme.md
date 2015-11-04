@@ -1,6 +1,7 @@
 # Objectives
 
-1. Demonstrate how we can use Jenkins to do continuous integrationt testing
+1. Demonstrate how we can use Jenkins for continuous integration
+2. Demonstrate how we can use Jenkings for Continuous Delivey
 
 ---
 
@@ -22,14 +23,78 @@
         * docker login
         * exit
 
+--
+
+# Dev Machine
+
+This machine is used to show the dev workflow:
+
+  * Run the application locally
+  * Make some edits
+  * Verify Changes
+  * Push to version control
+
+--
+
+# Dev Machine Configuration
+  * Docker
+  * Docker Compose
+  * Checkout of this repo
+    * `git clone https://github.com/rgardler/AzureDevTestDeploy.git`
+
+--
+
+# Dev Machine Setup
+
+  * Open a terminal
+    * set to full screen
+    * set font to a suitable size for the projector
+  * demo/demo250_automated_deployment/prepare-dev.sh
+
+--    
+
+# Azure Container Service Cluster
+
+ACS Cluster acts as a place to stage the latest build of the
+application.
+
+Used to verify the build before publication.
+
+  * Prior to ACS preview use our development template
+    * https://github.com/anhowe/scratch/tree/master/mesos-marathon
+  * After ACS preview use the ACS REsource Provider
+    * TODO: Update once ACS private preview is available
+
+--
+
+# CI/CD Machine
+
+The CI/CD machine needs to be able to run commands on the ACS cluster.
+
+The easiest way to do this is to use the Jumpbox provided as part of
+ACS.
+
+  * SSH into the Jumpbox in the cluster and run the following commands
+
+```
+git clone https://github.com/rgardler/AzureDevTestDeploy.git
+cd AzureDevTestDeploy/ci
+docker-compose up -d
+docker exec -it ci_jenkins_1 bash
+docker login
+exit
+```
+
 ---
 
-# Starting the demo
+# Demo Phase 1: Developer Workflow
 
-  * `sudo ./demo/demo140_continuos_integration/prepare.sh`
-  * On startup we will have a single container running
-    * Jenkins
-  * This will monitor Git for changes and run tests when necessary
+In this phase of the demo we see the developer making a change to the
+app, verifying it and pushing it to version control.
+
+## Details
+
+  * 
 
 ---
 
