@@ -11,9 +11,16 @@
       * Docker
       * Docker Compose
       * Checkout of this repo
+        * https://github.com/rgardler/AzureDevTestDeploy.git
     * An ACS cluster
-    * A CI/CD server in that cluster
-      * Must have logged into Docker Hub with `docker login`
+      * Until the service enters preview use https://github.com/anhowe/scratch/tree/master/mesos-marathon
+    * A CI/CD container in that cluster (must have run docker login)
+      * SSH into the Jumpbox in the cluster
+      * cd ci
+      * docker-compose up -d
+      * docker exec -it ci_jenkins_1 bash
+        * docker login
+        * exit
 
 ---
 
