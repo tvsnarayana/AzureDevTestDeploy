@@ -2,6 +2,12 @@
 <project>
   <actions/>
   <description>Deploy the application, with latest &quot;:stage&quot; container builds, on the Staging cluster.</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>3</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
@@ -20,6 +26,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>curl -X DELETE http://master0:8080/v2/groups/azure?force=true
+rm marathon.json
 wget https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/marathon/marathon.json
 curl -X POST http://master0:8080/v2/groups -d @marathon.json -H &quot;Content-type:application/json&quot;</command>
     </hudson.tasks.Shell>
