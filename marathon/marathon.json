@@ -15,7 +15,8 @@
           "container": {
             "docker": {
               "image": "adtd/web:stage",
-              "network": "HOST"
+              "network": "HOST",
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
@@ -35,7 +36,8 @@
           "container": {
             "docker": {
               "image": "adtd/rest:stage",
-              "network": "HOST"
+              "network": "HOST",
+              "forcePullImage": true
             },
             "type": "DOCKER"
           }
