@@ -15,7 +15,8 @@ cp $DEMO_HOME/.tmuxinator/* ~/.tmuxinator
 export DOCKER_HOME=
 export DOCKER=
 
-sudo docker stop $(docker ps -q)
+docker stop $(docker ps -q)
+sudo docker-compose -f docker-compose-dev.yml rm -f
 sudo docker-compose -f docker-compose-dev.yml up -d
 
 # Create tmux session
