@@ -11,17 +11,13 @@
     * A dev machine with:
       * Docker
       * Docker Compose
-      * Checkout of this repo
-        * https://github.com/rgardler/AzureDevTestDeploy.git
     * An ACS cluster
       * Until the service enters preview use https://github.com/anhowe/scratch/tree/master/mesos-marathon
-    * A CI/CD container in that cluster (must have run docker login)
-      * SSH into the Jumpbox in the cluster
-      * cd ci
-      * docker-compose up -d
-      * docker exec -it ci_jenkins_1 bash
-        * docker login
-        * exit
+    * A CI/CD container in that cluster (must have run docker login
+
+## Details
+
+Sections below this one describe the setup of these machines in detail.
 
 --
 
@@ -67,14 +63,44 @@ Used to verify the build before publication.
 
 --
 
+# ACS Cluster Setup: Jumpbox
+
+  * SSH into cluster jumpbox opening a tunnel for VNC
+
+```
+ssh -L 5901:localhost:5901 azureuser:YOUR_JUMPBOX_URL
+```
+
+  * {OPTIONAL] configure the Linux VM
+    * note this installs software and changes some configs
+    * You might prefer to read the script and do things manually
+    * Or fork my repo and customize the script for preference
+
+```
+git clone https://github.com/rgardler/linux-config.git
+./linux-config/configure.sh
+```
+--
+
+# ACS Cluster Setup: Jumpbox Desktop
+
+  * Install RealVNC desktop client on your demo machine
+  * Connect to localhost:1in RealVNC client
+  * Open Firefox and create the following tabs
+    * http://master1:5050
+    * http://master1:8080
+
+## Details
+
+As a convenience we will be using VNC to connect to the Mesos web UI.
+
+Verify you can see the expected number of Agents (slaves)
+
+--
+
 # CI/CD Machine
 
-The CI/CD machine needs to be able to run commands on the ACS cluster.
-
-The easiest way to do this is to use the Jumpbox provided as part of
-ACS.
-
-  * SSH into the Jumpbox in the cluster and run the following commands
+We will use the jumpbox as our CI/CD machine as well. On the jumpbox run the following commands:
 
 ```
 git clone https://github.com/rgardler/AzureDevTestDeploy.git
@@ -84,6 +110,17 @@ docker exec -it ci_jenkins_1 bash
 docker login
 exit
 ```
+
+## Details
+
+NOTE: for CI/CD to work you will need push access to the Docker Hub
+organization adtd, raise an issue in GitHub if you need this.
+
+You now have a Jenkins instance running on port 8081 on the Jumpbox
+
+It is configured to detect changes in the source, build the containers, test them, push them to Docker Hub and to publish to our Staging cluster.
+
+[OPTIONAL] you could open port 8081 on the VM and have this publicly accessible
 
 ---
 
