@@ -52,7 +52,9 @@ running.
 
 `docker exec ci_jenkins_1 docker login --email="foo@bar.org" --username="foo" --password="bar"`
 
-** TODO Publish app to Marathon from Docker Hub
+** DONE Publish app to Marathon from Docker Hub
+
+Use HTTP Request pluginz?
 
 Command to publish the app is:
 
@@ -70,33 +72,31 @@ curl -X PUT http://master0:8080/v2/groups -d @marathon.json -H "Content-type: ap
 To delete the deployment use:
 
 ```
-curl -X GET http://master0:8080/v2/groups/azure
+curl -X DELETE http://master0:8080/v2/groups/azure?force=true
 ```
 
-*** TODO make the PHP work
+*** DONE make the PHP work
 
-Currently the DNS lookup is not working:
+Initially I thought DNS was not working, but that is not the case. It
+was a misconfigured Jenkins job.
 
-array ( 'url' =>
-'http://rest-demo-azure.marathon.mesos:8080/JerseyHelloWorld/rest/helloworld',
-'content_type' => NULL, 'http_code' => 0, 'header_size' => 0,
-'request_size' => 0, 'filetime' => -1, 'ssl_verify_result' => 0,
-'redirect_count' => 0, 'total_time' => 7.7000000000000001E-5,
-'namelookup_time' => 3.0000000000000001E-5, 'connect_time' => 0,
-'pretransfer_time' => 0, 'size_upload' => 0, 'size_download' => 0,
-'speed_download' => 0, 'speed_upload' => 0, 'download_content_length'
-=> -1, 'upload_content_length' => -1, 'starttransfer_time' => 0,
-'redirect_time' => 0, 'redirect_url' => '', 'primary_ip' => '',
-'certinfo' => array ( ), 'primary_port' => 0, 'local_ip' => '',
-'local_port' => 0, )error occured during curl exec. Additioanl info:
+*** DONE update marathon.json to use adtd/*:stage
 
-*** TODO update marathon.json to use adtd/*:stage
+** TODO Consider increasing timeout on docker deployment
 
-*** TODO increase timeout on docker deployment
+Deploying using Marathon can sometimes take a few attempts to work. It
+might be because it takes time to pull down the new images and the
+task times out.
 
-Deploying using Marathon can take a few attempts to work as it needs
-to pull down the new images and the task times out.
+Possible settings to tweak:
 
+MESOS_EXECUTION-REGISTRATION_TIMEOUT
+MESOS_DOCKER_REMOVE_DELAY
+MESOS_GC_DELAY
+
+** TODO Use the Docker Publish plugin in CI
+
+** TODO Use Docker in Docker in CI
 
 ** TODO make the demo work on three machine cluster
 
