@@ -14,6 +14,8 @@ load_test/tests/load_test_in_progress
 
 # CI Project Files
 ci/jenkins/jenkins_home/.owner
+ci/jenkins/jenkins_home/.bash_history
+ci/jenkins/jenkins_home/.docker
 ci/jenkins/jenkins_home.bak
 ci/jenkins/jenkins_home/.java/
 ci/jenkins/jenkins_home/hudson.model.UpdateCenter.xml
