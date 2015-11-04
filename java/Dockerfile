@@ -1,7 +1,7 @@
 FROM tomcat
 
 RUN apt-get -qq update
-RUN apt-get -qqy install openjdk-7-jdk
+RUN apt-get -qqy install openjdk-7-jdk --fix-missing
 RUN apt-get -qqy install maven
 
 COPY . /app
