@@ -251,8 +251,12 @@ Demo Phase 3: A tour of ACS
 # Scaling
 
   * We have a cluster, lets scale up
-  * Use Marathon UI to scale web container to 3
+  * Use Marathon UI to scale web container
   * refresh browser, see the PHP HOST changing
+
+## Details
+
+NOTE: at the time of writing we can scale up the images but the HA Proxy load balancer does not work. Need to remove it and allow the Azure LB to do it's job
 
 ---
 
