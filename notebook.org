@@ -53,6 +53,56 @@ running.
 `docker exec ci_jenkins_1 docker login --email="foo@bar.org" --username="foo" --password="bar"`
 
 ** TODO Publish app to Marathon from Docker Hub
+
+Command to publish the app is:
+
+```
+curl -X POST http://master0:8080/v2/groups -d @marathon.json -H "Content-type: application/json"
+```
+
+To update the deployment use. Note that this will default to creating
+a deplyment if the group id does not already exist:
+
+```
+curl -X PUT http://master0:8080/v2/groups -d @marathon.json -H "Content-type: application/json"
+```
+
+To delete the deployment use:
+
+```
+curl -X GET http://master0:8080/v2/groups/azure
+```
+
+*** TODO make the PHP work
+
+Currently the DNS lookup is not working:
+
+array ( 'url' =>
+'http://rest-demo-azure.marathon.mesos:8080/JerseyHelloWorld/rest/helloworld',
+'content_type' => NULL, 'http_code' => 0, 'header_size' => 0,
+'request_size' => 0, 'filetime' => -1, 'ssl_verify_result' => 0,
+'redirect_count' => 0, 'total_time' => 7.7000000000000001E-5,
+'namelookup_time' => 3.0000000000000001E-5, 'connect_time' => 0,
+'pretransfer_time' => 0, 'size_upload' => 0, 'size_download' => 0,
+'speed_download' => 0, 'speed_upload' => 0, 'download_content_length'
+=> -1, 'upload_content_length' => -1, 'starttransfer_time' => 0,
+'redirect_time' => 0, 'redirect_url' => '', 'primary_ip' => '',
+'certinfo' => array ( ), 'primary_port' => 0, 'local_ip' => '',
+'local_port' => 0, )error occured during curl exec. Additioanl info:
+
+*** TODO update marathon.json to use adtd/*:stage
+
+*** TODO increase timeout on docker deployment
+
+Deploying using Marathon can take a few attempts to work as it needs
+to pull down the new images and the task times out.
+
+
+** TODO make the demo work on three machine cluster
+
+Currently we can't scale web on a three machine cluster, presumably,
+because there are insufficient resources.
+
 * TODO Extract common items from docker-compose files
 
 * TODO Rename "java" to "rest"
