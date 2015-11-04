@@ -10,8 +10,7 @@ RUN apt-get update -qq && apt-get install -qqy \
     iptables
     
 # Install Docker from Docker Inc. repositories.
-RUN curl -sSL https://get.docker.com/ubuntu/ | sh
-RUN groupadd docker
+RUN curl -sSL https://get.docker.com | sh
 RUN gpasswd -a jenkins docker
 
 # Install docker compose
