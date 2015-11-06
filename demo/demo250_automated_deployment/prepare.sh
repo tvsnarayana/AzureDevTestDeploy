@@ -16,9 +16,8 @@ export DOCKER_HOME=
 export DOCKER=
 
 docker stop $(docker ps -q)
-
-# Bring up the demo application
-docker-compose -f docker-compose-dev.yml up -d 
+docker-compose -f docker-compose-dev.yml rm -f
+docker-compose -f docker-compose-dev.yml up -d
 
 # Create tmux session
 tmux kill-session -t $DEMO_NAME
