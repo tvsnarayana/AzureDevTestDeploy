@@ -16,12 +16,12 @@ export DOCKER_HOME=
 export DOCKER=
 
 # Prepare Docker
-docker-compose -f docker-compose-dev.yml stop
+docker-compose -f docker-compose-integration.yml stop
 docker stop $(docker ps -aq)
 docker rm $(docker ps -qa) 
 
 # Start Docker containers
-docker-compose -f docker-compose-dev.yml up -d
+docker-compose -f docker-compose-integration.yml up -d
 
 # Create tmux session
 tmux kill-session -t $DEMO_NAME
