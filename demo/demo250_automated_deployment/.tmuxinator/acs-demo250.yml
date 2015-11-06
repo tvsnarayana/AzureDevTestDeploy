@@ -1,6 +1,6 @@
 # ~/.tmuxinator/azurecon-demo1.yml
 
-name: acsdemo250
+name: acs-demo250
 root: ~/projects/AzureDevTestDeploy
 
 # Optional tmux socket
