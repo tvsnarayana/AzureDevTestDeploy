@@ -17,11 +17,6 @@ export DOCKER=
 
 docker stop $(docker ps -q)
 
-# Bring up the CI system
-cd ci
-docker-compose up -d
-cd ..
-
 # Bring up the demo application
 docker-compose -f docker-compose-dev.yml up -d 
 
