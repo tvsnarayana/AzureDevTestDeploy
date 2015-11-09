@@ -33,7 +33,7 @@ echo "##########################################################################
 
 case "$STAGE_MACHINE_TYPE" in
   azure)
-      docker-machine -D create -d azure --azure-location="$AZURE_LOCATION" --azure-subscription-id="$AZURE_SUBSCRIPTION_ID" --azure-subscription-cert="$AZURE_CERT_NAME" $STAGE_MACHINE_NAME
+      docker-machine create -d azure --azure-location="$AZURE_LOCATION" --azure-subscription-id="$AZURE_SUBSCRIPTION_ID" --azure-subscription-cert="$AZURE_CERT_NAME" $STAGE_MACHINE_NAME
       ;;
   
   swarm-azure)
