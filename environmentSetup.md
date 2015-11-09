@@ -99,8 +99,8 @@ script/config.sh file as the value for SUBSCRIPTION_ID.
 We will set up Docker host machines as defined in the
 /script/config.sh file. This includes:
 
-  1. dev host machine (default type: Hype-V, default name: dev)
-  2. staging host machine (default type: Hype-V, default name: dev)
+  1. dev host machine (default type: Hyper-V, default name: dev)
+  2. staging host machine (default type: Hyper-V, default name: dev)
 
 Remember, the name of the staging host in script/config.sh must be
 world unique as it will double as the dns name.
