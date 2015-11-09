@@ -13,7 +13,7 @@
       * Docker Compose
     * An ACS cluster
       * Until the service enters preview use https://github.com/anhowe/scratch/tree/master/mesos-marathon
-    * A CI/CD container in that cluster (must have run docker login
+    * A CI/CD container in that cluster (must have run docker login)
 
 ## Details
 

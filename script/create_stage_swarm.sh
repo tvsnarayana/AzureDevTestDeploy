@@ -2,7 +2,11 @@
 # Creates a Swarm for staging
 #################################################################################
 
-source config.sh
+SCRIPT_PATH=$(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")
+SCRIPT_HOME=$(dirname $SCRIPT_PATH)
+
+echo "source $SCRIPT_HOME/config.sh"
+. $SCRIPT_HOME/config.sh
 
 echo "Pulling Swarm container for use on the dev " $DEV_MACHINE_NAME
 eval "$(docker-machine env $DEV_MACHINE_NAME)"
@@ -11,7 +15,7 @@ docker pull swarm
 echo "Creating a Swarm cluster, using Docker Hub as the registry"
 sid=$(docker run swarm create)
 echo "Swarm cluster ID is " $sid
-sed -i -e "s/SWARM_ID=.*$/SWARM_ID=$sid/g" ./config.sh
+sed -i -e "s/SWARM_ID=.*$/SWARM_ID=$sid/g" $SCRIPT_HOME/config.sh
 echo "The SWARM ID has been saved in your config.sh file"
 
 echo "Creating Swarm Master as ${STAGE_MACHINE_NAME}" 
