@@ -13,7 +13,7 @@
       * Docker Compose
     * An ACS cluster
       * Until the service enters preview use https://github.com/anhowe/scratch/tree/master/mesos-marathon
-    * A CI/CD container in that cluster (must have run docker login)
+    * A CI/CD machine (can be the jumpbox in the ACS cluster)
 
 ## Details
 
@@ -54,6 +54,8 @@ cd AzureDevTestDeploy
 We will use the jumpbox as our CI/CD machine as well. On the jumpbox run the following commands:
 
 ```
+git clone https://github.com/rgardler/linux-config.git
+./linux-config/configure.sh
 git clone https://github.com/rgardler/AzureDevTestDeploy.git
 cd AzureDevTestDeploy/ci
 docker-compose up -d
