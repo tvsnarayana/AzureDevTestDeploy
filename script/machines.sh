@@ -3,7 +3,11 @@
 # Setup the machine you need to run the demo's here
 ###########################################################################
 
-source script/config.sh
+SCRIPT_PATH=$(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")
+SCRIPT_HOME=$(dirname $SCRIPT_PATH)
+
+echo "source $SCRIPT_HOME/config.sh"
+. $SCRIPT_HOME/config.sh
 
 echo "##########################################################################################"
 echo "Creating "$DEV_MACHINE_TYPE" machine for development with name $DEV_MACHINE_NAME"
@@ -33,7 +37,7 @@ case "$STAGE_MACHINE_TYPE" in
       ;;
   
   swarm-azure)
-      source script/create_stage_swarm.sh
+      source $SCRIPT_HOME/create_stage_swarm.sh
       ;;
   
   *) echo "ERROR: Cannot create Stage machine of type $STAGE_MACHINE_TYPE"
