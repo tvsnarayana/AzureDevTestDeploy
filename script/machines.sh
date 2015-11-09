@@ -22,6 +22,10 @@ case "$DEV_MACHINE_TYPE" in
       docker-machine create -d azure --azure-location="$AZURE_LOCATION" --azure-subscription-id="$AZURE_SUBSCRIPTION_ID" --azure-subscription-cert="$AZURE_CERT_NAME" $DEV_MACHINE_NAME
       docker-machine env $DEV_MACHINE_NAME
       ;;
+  virtualbox)
+      docker-machine create -d $DEV_MACHINE_TYPE $DEV_MACHINE_NAME
+      docker-machine env $DEV_MACHINE_NAME 
+      ;;
   *)
       echo "Can't create dev machine of type $DEV_MACHINE_TYPE"
       ;;

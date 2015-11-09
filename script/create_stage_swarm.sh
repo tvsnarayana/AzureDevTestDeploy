@@ -2,7 +2,6 @@
 # Creates a Swarm for staging
 #################################################################################
 
-
 SCRIPT_PATH=$(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")
 SCRIPT_HOME=$(dirname $SCRIPT_PATH)
 
