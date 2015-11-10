@@ -45,7 +45,7 @@ git clone https://github.com/rgardler/linux-config.git
 ./linux-config/configure.sh
 git clone https://github.com/rgardler/AzureDevTestDeploy.git
 cd AzureDevTestDeploy
-./demo/demo250_automated_deployment/prepare-dev.sh
+./demo/demo250_automated_deployment/prepare.sh
 ```
 --    
 
