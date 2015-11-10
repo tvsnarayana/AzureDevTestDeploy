@@ -19,7 +19,8 @@ touch $TIP_FILE
 
 # Run the benchmark
 echo "Running Apache Benchmark"
-ab -c 5 -t 60 -g $OUT_FILE $SERVER | tee $AB_RESULTS_FILE
+# NOTE: the time for benchmarking here is artificially low, this is to ensure that demo's don't take too long
+ab -c 5 -t 15 -g $OUT_FILE $SERVER | tee $AB_RESULTS_FILE
 
 # Generate results file
 echo "Generating results file"
