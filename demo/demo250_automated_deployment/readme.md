@@ -13,7 +13,7 @@
       * Docker Compose
     * An ACS cluster
       * Until the service enters preview use https://github.com/anhowe/scratch/tree/master/mesos-marathon
-    * A CI/CD container in that cluster (must have run docker login)
+    * A CI/CD machine (can be the jumpbox in the ACS cluster)
 
 ## Details
 
@@ -54,11 +54,14 @@ cd AzureDevTestDeploy
 We will use the jumpbox as our CI/CD machine as well. On the jumpbox run the following commands:
 
 ```
+git clone https://github.com/rgardler/linux-config.git
+./linux-config/configure.sh
 git clone https://github.com/rgardler/AzureDevTestDeploy.git
 cd AzureDevTestDeploy/ci
 docker-compose up -d
 docker exec -it ci_jenkins_1 bash
 docker login
+# Enter user and password details
 exit
 ```
 
@@ -93,12 +96,14 @@ Used to verify the build before pushing to production.
 # ACS Cluster Setup: Jumpbox
 
   * SSH into cluster jumpbox opening a tunnel for VNC
+  * If you are on Mac or Linux run the following command
 
 ```
 ssh -L 5901:localhost:5901 azureuser:YOUR_JUMPBOX_URL
 ```
 
-  * {OPTIONAL] configure the Linux VM
+  * For Windows install Putty and follow [Anthony Howe's guide](https://github.com/Azure/azure-quickstart-templates/blob/master/ubuntu-desktop/README.md#accessing-from-windows)
+  * {OPTIONAL] configure the Linux VM using the commands below
     * note this installs software and changes some configs
     * You might prefer to read the script and do things manually
     * Or fork my repo and customize the script for preference
@@ -122,6 +127,8 @@ git clone https://github.com/rgardler/linux-config.git
 As a convenience we will be using VNC to connect to the Mesos web UI.
 
 Verify you can see the expected number of Agents (slaves)
+
+For details on how to do this installation see https://github.com/Azure/azure-quickstart-templates/blob/master/ubuntu-desktop/README.md#accessing-from-windows
 
 ---
 
