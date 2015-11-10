@@ -74,7 +74,9 @@ organization adtd, raise an issue in GitHub if you need this.
 
 You now have a Jenkins instance running on port 8081 on the Jumpbox
 
-It is configured to detect changes in the source, build the containers, test them, push them to Docker Hub and to publish to our Staging cluster.
+It is configured to detect changes in the source, build the
+containers, test them, push them to Docker Hub and to publish to our
+Staging cluster.
 
 [OPTIONAL] you could open port 8081 on the VM and have this publicly accessible
 
@@ -143,7 +145,7 @@ app, verifying it and pushing it to version control.
 
 # The demo application
 
-  * http://mvpdemo.eastus.cloudapp.azure.com
+  * http://YOUR_DNS.YOUR_REGION.cloudapp.azure.com
   * A simple PHP web front-end
   * Connects to a Java Backend (REST API)
   * Front end is load balanced
