@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Hello Barcelona!</title>
+    <title>Hello Barcelona! Give Microsoft Azure a try. :-)</title>
   </head>
   <body>
     <img src="image/Container-255x115.png" alt="Azure Container Service Logo" style="float:right"/>
