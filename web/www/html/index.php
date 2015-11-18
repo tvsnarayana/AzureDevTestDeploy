@@ -1,11 +1,10 @@
 <html>
   <head>
-    <title>Hello Barcelona!</title>
+    <title>Hello Stockholm!</title>
   </head>
   <body>
     <img src="image/Container-255x115.png" alt="Azure Container Service Logo" style="float:right"/>
-    <h1>Hello and welcome to Barcelona from the PHP Web application</h1>
-    <h2>brand new message for demo!!!</h2>
+    <h1>Hello and welcome from the PHP Web application</h1>
     <p>Host: <?php echo gethostname() ?></p>
     <?php
        // Sleep to make the script take enough time to fail the CI test.
