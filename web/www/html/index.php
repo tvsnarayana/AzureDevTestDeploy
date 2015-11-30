@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Hello there!</title>
+    <title>Hello there, Azure!</title>
   </head>
   <body>
     <img src="image/Container-255x115.png" alt="Azure Container Service Logo" style="float:right"/>
