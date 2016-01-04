@@ -1,19 +1,12 @@
 web:
-  image: adtd/web
+  image: adtd/web:0.1
   ports:
-    - "80"
+    - "80:80"
   links:
     - rest
 rest:
-  image: adtd/rest
+  image: adtd/rest:0.1
   ports:
     - "8080:8080"
-lb:
-  image: eeacms/haproxy
-  ports:
-    - "80:80"
-    - "1936:1936"
-  links:
-    - web
 
 
