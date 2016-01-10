@@ -1,3 +1,4 @@
 # A roger build file
 web:
+  dockerfilePath: web
   registry: docker.io
