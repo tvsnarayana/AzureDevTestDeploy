@@ -1,4 +1,4 @@
 # A roger build file
-web:
-  dockerfilePath: adtd/web
+adtd/web:
+  dockerfilePath: web
   registry: dockerhub
