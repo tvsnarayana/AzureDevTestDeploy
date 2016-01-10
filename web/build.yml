@@ -1,0 +1,3 @@
+# A roger build file
+web:
+  registry: docker.io
