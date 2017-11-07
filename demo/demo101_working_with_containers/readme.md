@@ -1,4 +1,4 @@
-# Objectives
+-# Objectives
 
 1. Demonstrate how fast containers can be started and stopped
 2. Learn basic commadns for managing containers
